@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Transport Futures Africa</title>
+  <meta name="description" content="Get in touch with Transport Futures Africa — for research enquiries, media, events, and fellowship opportunities.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="" class="nav-logo-mark">
+    <div class="nav-logo-text">Transport Futures<em>Africa</em></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="research.html">Research</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="team.html">Team</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="index.html#newsletter" class="nav-cta">Subscribe</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile" id="mobileMenu">
+  <button class="nav-mobile-close" id="mobileClose">&#x2715;</button>
+  <a href="about.html">About</a>
+  <a href="research.html">Research</a>
+  <a href="events.html">Events</a>
+  <a href="team.html">Team</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-glow"></div>
+  <div class="page-hero-content">
+    <div class="label">Get in Touch</div>
+    <h1>Contact Us</h1>
+    <p class="hero-sub">Research enquiries, media requests, event partnerships across Africa, and fellowship applications — we'd love to hear from you.</p>
+  </div>
+</section>
+
+<!-- CONTACT CONTENT -->
+<section class="section">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- Form column -->
+      <div class="contact-form-col reveal">
+        <div class="label">Send a Message</div>
+        <h2>Write to Us</h2>
+        <p style="color:var(--c-grey-600);margin:.75rem 0 2rem;max-width:480px;line-height:1.7">
+          Use the form below for general enquiries. We aim to respond within two working days.
+        </p>
+
+        <form class="contact-form" id="contactForm" novalidate>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contactName">Full Name <span class="req">*</span></label>
+              <input type="text" id="contactName" name="name" placeholder="Dr. Jane Smith" required>
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email Address <span class="req">*</span></label>
+              <input type="email" id="contactEmail" name="email" placeholder="jane@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contactOrg">Organisation</label>
+              <input type="text" id="contactOrg" name="organisation" placeholder="University / Government / NGO">
+            </div>
+            <div class="form-group">
+              <label for="contactSubject">Subject <span class="req">*</span></label>
+              <select id="contactSubject" name="subject" required>
+                <option value="" disabled selected>Select a topic…</option>
+                <option value="research">Research Enquiry</option>
+                <option value="media">Media &amp; Press</option>
+                <option value="events">Events &amp; Partnerships</option>
+                <option value="fellowship">Research Fellowship</option>
+                <option value="jobs">Job Opportunities</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="contactMessage">Message <span class="req">*</span></label>
+            <textarea id="contactMessage" name="message" rows="6" placeholder="Tell us about your enquiry…" required></textarea>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" id="contactNewsletter" name="newsletter">
+            <label for="contactNewsletter">Subscribe me to the Transport Futures newsletter</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary contact-submit">
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l5 4-5 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+
+          <div class="form-success" id="formSuccess" style="display:none">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="var(--c-teal)" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="var(--c-teal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Thank you — we'll be in touch within two working days.
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Sidebar / contact details -->
+      <div class="contact-sidebar">
+
+        <div class="contact-info-card reveal">
+          <h5>Our Office</h5>
+
+          <div class="contact-detail">
+            <div class="contact-icon">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 1C6.686 1 4 3.686 4 7c0 4.688 6 12 6 12s6-7.312 6-12c0-3.314-2.686-6-6-6z"/><circle cx="10" cy="7" r="2"/></svg>
+            </div>
+            <div>
+              <strong>Address</strong>
+              <p>Transport Futures Africa<br>Westlands Business Park, Suite 4B<br>Nairobi, 00800<br>Kenya</p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-icon">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"/><path d="M3 8h14M8 8v9"/></svg>
+            </div>
+            <div>
+              <strong>General Enquiries</strong>
+              <p><a href="mailto:info@transportfuturesafrica.org">info@transportfuturesafrica.org</a></p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-icon">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4a1 1 0 011-1h2.5l1 3-1.5 1.5a11 11 0 005 5L12.5 11l3 1V14.5a1 1 0 01-1 1C7.61 15.5 4.5 8.39 4.5 5.5A1.5 1.5 0 013 4z"/></svg>
+            </div>
+            <div>
+              <strong>Phone</strong>
+              <p>+254 (0)20 765 4300</p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-icon">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="9"/><path d="M10 5v5l3 3"/></svg>
+            </div>
+            <div>
+              <strong>Office Hours</strong>
+              <p>Monday – Friday<br>8:00 – 17:00 EAT</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map placeholder -->
+        <div class="contact-map reveal reveal-delay-1">
+          <div class="map-placeholder">
+            <div class="map-dot"></div>
+            <div class="map-ripple"></div>
+            <div class="map-label">Westlands, Nairobi</div>
+            <div class="map-grid"></div>
+          </div>
+        </div>
+
+        <!-- Specific contacts -->
+        <div class="contact-info-card reveal reveal-delay-2">
+          <h5>Direct Contacts</h5>
+
+          <div class="direct-contact">
+            <div class="direct-label">Media &amp; Press</div>
+            <a href="mailto:press@transportfuturesafrica.org">press@transportfuturesafrica.org</a>
+          </div>
+          <div class="direct-contact">
+            <div class="direct-label">Research Enquiries</div>
+            <a href="mailto:research@transportfuturesafrica.org">research@transportfuturesafrica.org</a>
+          </div>
+          <div class="direct-contact">
+            <div class="direct-label">Events &amp; Partnerships</div>
+            <a href="mailto:events@transportfuturesafrica.org">events@transportfuturesafrica.org</a>
+          </div>
+          <div class="direct-contact">
+            <div class="direct-label">Fellowships &amp; Careers</div>
+            <a href="mailto:fellowships@transportfuturesafrica.org">fellowships@transportfuturesafrica.org</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.png" alt="" class="nav-logo-mark">
+        <div class="nav-logo-text">Transport Futures<em>Africa</em></div>
+      </a>
+      <p>An independent research institute advancing evidence-based transport policy across Africa. Not-for-profit organisation registered in Nairobi, Kenya.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Research</h5>
+      <ul>
+        <li><a href="research.html">All Reports</a></li>
+        <li><a href="research.html">Urban Mobility</a></li>
+        <li><a href="research.html">Rail Policy</a></li>
+        <li><a href="research.html">Active Travel</a></li>
+        <li><a href="research.html">Autonomous Vehicles</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Organisation</h5>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="team.html">Our Team</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="index.html#newsletter">Newsletter</a></li>
+        <li><a href="#">Twitter / X</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">RSS Feed</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Transport Futures Africa. All rights reserved.</p>
+    <div class="footer-social">
+      <a href="#" aria-label="Twitter">&#120143;</a>
+      <a href="#" aria-label="LinkedIn">in</a>
+      <a href="#" aria-label="RSS">RSS</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/font-switcher.js"></script>
+</body>
+</html>
