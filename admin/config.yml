@@ -7,6 +7,21 @@ public_folder: /images/uploads
 
 collections:
 
+  - name: settings
+    label: Site Settings
+    files:
+      - name: settings
+        label: Site Settings
+        file: data/settings.json
+        fields:
+          - { label: Hero Background Image, name: hero_image,  widget: image,  required: false, hint: "Main background image on the homepage. Leave blank to use the default." }
+          - { label: Hero Title,            name: hero_title,  widget: string, required: false }
+          - { label: Hero Subtitle,         name: hero_subtitle, widget: text, required: false }
+          - { label: Stat — Reports Published,      name: stat_reports,       widget: number }
+          - { label: Stat — Countries Engaged,      name: stat_countries,     widget: number }
+          - { label: Stat — Practitioners in Network, name: stat_practitioners, widget: number }
+
+
   - name: research
     label: Research Papers
     files:

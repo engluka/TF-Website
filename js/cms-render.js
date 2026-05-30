@@ -158,6 +158,36 @@ async function renderTeam() {
   }).join('');
 }
 
+// ---- Site Settings ----
+async function applySettings() {
+  const s = await loadJSON('data/settings.json');
+
+  // Hero background image override
+  if (s.hero_image) {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+      hero.style.backgroundImage =
+        `linear-gradient(105deg,rgba(10,22,40,0.97) 38%,rgba(10,22,40,0.72) 70%,rgba(10,22,40,0.55) 100%),url('${s.hero_image}')`;
+      hero.style.backgroundSize = 'auto, cover';
+      hero.style.backgroundPosition = 'center, center 40%';
+      hero.style.backgroundRepeat = 'no-repeat, no-repeat';
+    }
+  }
+
+  // Stats
+  const statMap = {
+    '[data-count="47"]': s.stat_reports,
+    '[data-count="18"]': s.stat_countries,
+    '[data-count="800"]': s.stat_practitioners
+  };
+  Object.entries(statMap).forEach(([sel, val]) => {
+    document.querySelectorAll(sel).forEach(el => {
+      el.dataset.count = val;
+      el.textContent = val;
+    });
+  });
+}
+
 // ---- Home Page ----
 async function renderHome() {
   const researchEl = document.getElementById('home-research-grid');
@@ -217,7 +247,9 @@ async function renderHome() {
 
 // ---- Init ----
 const _page = window.location.pathname.split('/').pop() || 'index.html';
-if (_page === 'research.html')      renderResearch().catch(console.error);
-else if (_page === 'events.html')   renderEvents().catch(console.error);
-else if (_page === 'team.html')     renderTeam().catch(console.error);
-else if (_page === 'index.html' || _page === '') renderHome().catch(console.error);
+if (_page === 'index.html' || _page === '') {
+  applySettings().catch(console.error);
+  renderHome().catch(console.error);
+} else if (_page === 'research.html') renderResearch().catch(console.error);
+else if (_page === 'events.html')     renderEvents().catch(console.error);
+else if (_page === 'team.html')       renderTeam().catch(console.error);
