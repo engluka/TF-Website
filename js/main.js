@@ -52,6 +52,14 @@ const revealObserver = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+// Fallback: reveal elements already in the viewport on page load
+window.addEventListener('load', () => {
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
+  });
+});
+
 // ---- Counter animation ----
 function runCounter(el) {
   const target   = parseInt(el.dataset.count, 10);
