@@ -162,16 +162,36 @@ if (rotatingWord) {
   loop();
 }
 
-// ---- Newsletter form ----
+// ---- Newsletter form (Brevo) ----
 const nlForm = document.querySelector('.newsletter-form');
 if (nlForm) {
-  nlForm.addEventListener('submit', e => {
+  nlForm.addEventListener('submit', async e => {
     e.preventDefault();
-    const btn = nlForm.querySelector('button');
-    btn.textContent = 'Subscribed!';
-    btn.style.background = '#059669';
-    btn.style.borderColor = '#059669';
+    const btn   = nlForm.querySelector('button');
+    const email = nlForm.querySelector('input[type="email"]').value.trim();
+    if (!email) return;
+
+    btn.textContent = 'Subscribing…';
     btn.disabled = true;
+
+    try {
+      const res = await fetch('/.netlify/functions/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      if (res.ok || res.status === 204) {
+        btn.textContent = 'Subscribed!';
+        btn.style.background = '#059669';
+        btn.style.borderColor = '#059669';
+      } else {
+        throw new Error();
+      }
+    } catch {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+    }
   });
 }
 
