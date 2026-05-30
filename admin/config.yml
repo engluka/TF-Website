@@ -87,7 +87,8 @@ collections:
             widget: list
             fields:
               - { label: Name,               name: name,          widget: string }
-              - { label: Initials (2 letters), name: initials,    widget: string }
+              - { label: Initials (2 letters), name: initials,   widget: string }
+              - { label: Photo,               name: photo,        widget: image, required: false, hint: "Optional. If left blank, initials are shown instead." }
               - { label: Role / Title,        name: role,         widget: string }
               - { label: Bio,                 name: bio,          widget: text }
               - { label: Twitter URL,         name: twitter_url,  widget: string, required: false }

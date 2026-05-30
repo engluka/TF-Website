@@ -142,9 +142,13 @@ async function renderTeam() {
       m.profile_url  ? `<a href="${m.profile_url}">${m.profile_label || 'Profile'}</a>` : ''
     ].filter(Boolean).join(' · ');
 
+    const avatar = m.photo
+      ? `<div class="team-avatar" style="--av-bg:${grad}"><img src="${m.photo}" alt="${m.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;z-index:1"></div>`
+      : `<div class="team-avatar" style="--av-bg:${grad}"><span>${m.initials}</span></div>`;
+
     return `
       <div class="team-card">
-        <div class="team-avatar" style="--av-bg:${grad}"><span>${m.initials}</span></div>
+        ${avatar}
         <h4>${m.name}</h4>
         <div class="team-role">${m.role}</div>
         <p>${m.bio}</p>
