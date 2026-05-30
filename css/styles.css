@@ -1505,5 +1505,5 @@ textarea.form-control { resize: vertical; min-height: 140px; line-height: 1.6; }
   .hero h1 { font-size: clamp(3rem, 12vw, 5rem); }
   .pillars-section { margin-top: -2rem; }
   .featured-report { padding: 2rem; }
-  .team-grid { grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+  .team-grid { grid-template-columns: 1fr; gap: 1.5rem; }
 }
