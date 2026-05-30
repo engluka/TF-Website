@@ -18,7 +18,7 @@ const AVATAR_GRADIENTS = [
 ];
 
 async function loadJSON(path) {
-  const res = await fetch(path);
+  const res = await fetch(path + '?v=' + Date.now(), { cache: 'no-store' });
   if (!res.ok) throw new Error('Failed to load ' + path);
   return res.json();
 }
