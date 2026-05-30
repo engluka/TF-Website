@@ -270,10 +270,10 @@ async function renderHome() {
 }
 
 // ---- Init ----
-const _page = window.location.pathname.split('/').pop() || 'index.html';
-if (_page === 'index.html' || _page === '') {
+const _page = window.location.pathname.split('/').pop().replace(/\.html$/, '') || 'index';
+if (_page === 'index' || _page === '') {
   applySettings().catch(console.error);
   renderHome().catch(console.error);
-} else if (_page === 'research.html') renderResearch().catch(console.error);
-else if (_page === 'events.html')     renderEvents().catch(console.error);
-else if (_page === 'team.html')       renderTeam().catch(console.error);
+} else if (_page === 'research') renderResearch().catch(console.error);
+else if (_page === 'events')     renderEvents().catch(console.error);
+else if (_page === 'team')       renderTeam().catch(console.error);
