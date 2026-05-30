@@ -162,7 +162,7 @@ async function renderTeam() {
 async function applySettings() {
   const s = await loadJSON('data/settings.json');
 
-  // Hero background image override
+  // Hero background image
   if (s.hero_image) {
     const hero = document.querySelector('.hero');
     if (hero) {
@@ -172,6 +172,21 @@ async function applySettings() {
       hero.style.backgroundPosition = 'center, center 40%';
       hero.style.backgroundRepeat = 'no-repeat, no-repeat';
     }
+  }
+
+  // Hero title
+  if (s.hero_title) {
+    const h1 = document.querySelector('.hero h1');
+    if (h1) {
+      const rotateSpan = h1.querySelector('.accent');
+      h1.innerHTML = s.hero_title + (rotateSpan ? '<br>' + rotateSpan.outerHTML : '');
+    }
+  }
+
+  // Hero subtitle
+  if (s.hero_subtitle) {
+    const desc = document.querySelector('.hero-desc');
+    if (desc) desc.textContent = s.hero_subtitle;
   }
 
   // Stats
