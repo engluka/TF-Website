@@ -176,9 +176,11 @@ if (nlForm) {
   nlForm.addEventListener('submit', async e => {
     e.preventDefault();
     const btn   = nlForm.querySelector('button');
-    const email = nlForm.querySelector('input[type="email"]').value.trim();
+    const input = nlForm.querySelector('input[type="email"]');
+    const email = input.value.trim();
     if (!email) return;
 
+    const originalText = btn.textContent;
     btn.textContent = 'Subscribing…';
     btn.disabled = true;
 
@@ -190,9 +192,18 @@ if (nlForm) {
       });
 
       if (res.ok || res.status === 204) {
+        input.value = '';
+        input.placeholder = 'Thanks for subscribing!';
         btn.textContent = 'Subscribed!';
         btn.style.background = '#059669';
         btn.style.borderColor = '#059669';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = '';
+          btn.style.borderColor = '';
+          btn.disabled = false;
+          input.placeholder = 'Your email address';
+        }, 4000);
       } else {
         throw new Error();
       }
