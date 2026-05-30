@@ -175,15 +175,39 @@ if (nlForm) {
   });
 }
 
-// ---- Contact form ----
+// ---- Contact form (Formspree) ----
+// Replace YOUR_FORM_ID below with the ID from formspree.io/forms
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
 const ctForm = document.querySelector('.contact-form');
 if (ctForm) {
-  ctForm.addEventListener('submit', e => {
+  ctForm.addEventListener('submit', async e => {
     e.preventDefault();
     const btn = ctForm.querySelector('button[type="submit"]');
-    btn.textContent = 'Message Sent';
-    btn.style.background = '#059669';
-    btn.style.borderColor = '#059669';
+    const successMsg = document.getElementById('formSuccess');
+
+    btn.textContent = 'Sending…';
     btn.disabled = true;
+
+    try {
+      const data = new FormData(ctForm);
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' }
+      });
+
+      if (res.ok) {
+        btn.style.display = 'none';
+        if (successMsg) successMsg.style.display = 'flex';
+        ctForm.reset();
+      } else {
+        btn.textContent = 'Failed — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Failed — try again';
+      btn.disabled = false;
+    }
   });
 }
