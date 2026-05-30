@@ -19,6 +19,7 @@ collections:
             widget: list
             fields:
               - { label: Title,          name: title,          widget: string }
+              - { label: Cover Image,    name: image,          widget: image, required: false, hint: "Optional cover image shown on the research card." }
               - label: Category
                 name: category
                 widget: select
@@ -108,6 +109,7 @@ collections:
             widget: object
             fields:
               - { label: Title,        name: title,        widget: string }
+              - { label: Cover Image,  name: image,        widget: image, required: false, hint: "Optional image shown in the featured news block." }
               - { label: Summary,      name: summary,      widget: text }
               - { label: Date Display, name: date_display, widget: string }
               - { label: Type,         name: type,         widget: string, hint: "e.g. Press Release" }
@@ -117,5 +119,6 @@ collections:
             widget: list
             fields:
               - { label: Title,        name: title,        widget: string }
+              - { label: Cover Image,  name: image,        widget: image, required: false, hint: "Optional thumbnail image." }
               - { label: Summary,      name: summary,      widget: text }
               - { label: Date Display, name: date_display, widget: string }

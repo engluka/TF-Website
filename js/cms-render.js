@@ -51,6 +51,7 @@ async function renderResearch() {
   if (gridEl) {
     gridEl.innerHTML = papers.map(p => `
       <div class="r-card research-card" data-category="${p.category}">
+        ${p.image ? `<img src="${p.image}" alt="${p.title}" style="width:100%;height:180px;object-fit:cover;border-radius:var(--r-md) var(--r-md) 0 0;display:block">` : ''}
         <div class="r-card-body">
           <span class="r-card-tag">${p.tag}</span>
           <h4>${p.title}</h4>
@@ -187,9 +188,8 @@ async function renderHome() {
   if (newsFeatEl && newsData.featured) {
     const f = newsData.featured;
     newsFeatEl.innerHTML = `
-      <div class="news-img">
-        <div class="news-img-deco"></div>
-        <div class="news-img-deco2"></div>
+      <div class="news-img" ${f.image ? `style="background-image:url('${f.image}');background-size:cover;background-position:center"` : ''}>
+        ${!f.image ? '<div class="news-img-deco"></div><div class="news-img-deco2"></div>' : ''}
         <span class="news-img-tag">${f.type}</span>
       </div>
       <div class="news-featured-body">
@@ -205,7 +205,7 @@ async function renderHome() {
   if (newsListEl) {
     newsListEl.innerHTML = newsData.items.slice(0, 4).map((item, i) => `
       <div class="news-item">
-        <div class="news-item-n">0${i + 1}</div>
+        ${item.image ? `<img src="${item.image}" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:var(--r-sm);flex-shrink:0">` : `<div class="news-item-n">0${i + 1}</div>`}
         <div class="news-item-body">
           <h4>${item.title}</h4>
           <p>${item.summary}</p>
