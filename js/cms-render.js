@@ -174,13 +174,21 @@ async function applySettings() {
     }
   }
 
-  // Hero title
+  // Hero title — DOM manipulation (not innerHTML) to keep the live .hero-word-rotate
+  // node that main.js already holds a reference to
   if (s.hero_title) {
     const h1 = document.querySelector('.hero h1');
     if (h1) {
-      const rotateSpan = h1.querySelector('.accent');
-      const titleHtml = s.hero_title.replace(/\n/g, '<br>');
-      h1.innerHTML = titleHtml + (rotateSpan ? ' ' + rotateSpan.outerHTML : '');
+      const accentSpan = h1.querySelector('.accent');
+      h1.innerHTML = '';
+      s.hero_title.split('\n').forEach((line, i, arr) => {
+        h1.appendChild(document.createTextNode(line));
+        if (i < arr.length - 1) h1.appendChild(document.createElement('br'));
+      });
+      if (accentSpan) {
+        h1.appendChild(document.createTextNode(' '));
+        h1.appendChild(accentSpan);
+      }
     }
   }
 
