@@ -1,32 +1,33 @@
 {
   "members": [
     {
-      "name": "Edna Mercy",
-      "initials": "EM",
-      "role": "Executive Director",
-      "bio": "Specializing in sustainable mobility, electric mobility, and intelligent transport systems, Edna holds a Master's degree in Transportation Engineering. Bringing expertise from various institutions, she actively contributes to research and mentors young engineers at Egerton University, Kenya.",
       "twitter_url": "#",
+      "bio": "Specializing in sustainable mobility, electric mobility, and intelligent transport systems, Edna holds a Master's degree in Transportation Engineering. Bringing expertise from various institutions, she actively contributes to research and mentors young engineers at Egerton University, Kenya.",
+      "name": "Edna Mercy",
       "linkedin_url": "https://www.linkedin.com/in/edna-m-370788223/",
+      "initials": "EM",
+      "photo": "/images/uploads/edna_bw.jpg",
+      "role": "Executive Director",
       "profile_url": "#",
       "profile_label": "UoN Profile"
     },
     {
-      "name": "Dr. James Okafor",
-      "initials": "JO",
-      "role": "Head of Research",
-      "bio": "James leads the institute's research programme and manages the peer review process. His own research focuses on transport equity and the distributional effects of infrastructure investment in West African cities. Previously a Senior Researcher at the African Development Bank.",
+      "name": "Anteneh Mekonnen",
+      "initials": "AM",
+      "role": "Research Director",
+      "bio": "Anteneh is a seasoned professional in transport planning holding a PhD in Safe and Sustainable Urban Mobility. Anteneh has been leading projects in various countries on enhancing urban safety and liveability for over a decade and half. ",
       "twitter_url": "#",
-      "linkedin_url": "#",
+      "linkedin_url": "https://nl.linkedin.com/in/antenehamekonnen",
       "profile_url": "",
       "profile_label": ""
     },
     {
-      "name": "Dr. Amina Mwangi",
-      "initials": "AM",
-      "role": "Senior Fellow, Urban Mobility",
-      "bio": "Amina leads our urban mobility research programme, including our flagship informal transit integration project and our work on BRT equity across East African cities. Her expertise spans urban design, travel behaviour, and participatory planning methods.",
+      "name": "Melchior Kadja",
+      "initials": "MK",
+      "role": "Senior Associate, Urban Planning",
+      "bio": "With over three years of experience in sustainable mobility, and a PhD in urban planning, Kadja is well-equipped to contribute to the organization's research initiatives, emphasizing sustainable urban development.",
       "twitter_url": "#",
-      "linkedin_url": "#",
+      "linkedin_url": "https://www.linkedin.com/in/cossi-jeannot-melchior-kadja-488aaa19a/?locale=en",
       "profile_url": "",
       "profile_label": ""
     },
