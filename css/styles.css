@@ -170,9 +170,8 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
 /* Logo */
 .nav-logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
 .nav-logo-mark {
-  height: 100%;
+  height: 2.4rem;
   width: auto;
-  align-self: stretch;
   flex-shrink: 0;
   display: block;
 }
