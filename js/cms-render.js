@@ -179,7 +179,8 @@ async function applySettings() {
     const h1 = document.querySelector('.hero h1');
     if (h1) {
       const rotateSpan = h1.querySelector('.accent');
-      h1.innerHTML = s.hero_title + (rotateSpan ? '<br>' + rotateSpan.outerHTML : '');
+      const titleHtml = s.hero_title.replace(/\n/g, '<br>');
+      h1.innerHTML = titleHtml + (rotateSpan ? ' ' + rotateSpan.outerHTML : '');
     }
   }
 

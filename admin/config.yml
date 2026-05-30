@@ -2,6 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
+publish_mode: editorial_workflow
+
 media_folder: images/uploads
 public_folder: /images/uploads
 
@@ -15,7 +17,7 @@ collections:
         file: data/settings.json
         fields:
           - { label: Hero Background Image, name: hero_image,  widget: image,  required: false, hint: "Main background image on the homepage. Leave blank to use the default." }
-          - { label: Hero Title,            name: hero_title,  widget: string, required: false }
+          - { label: Hero Title,            name: hero_title,  widget: text,   required: false, hint: "Use Enter for line breaks. Do NOT include the rotating word (Transport/Mobility/etc) — that is added automatically." }
           - { label: Hero Subtitle,         name: hero_subtitle, widget: text, required: false }
           - { label: Stat — Reports Published,      name: stat_reports,       widget: number }
           - { label: Stat — Countries Engaged,      name: stat_countries,     widget: number }
