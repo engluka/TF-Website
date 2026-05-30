@@ -1,0 +1,84 @@
+{
+  "members": [
+    {
+      "name": "Prof. Sarah Chen",
+      "initials": "SC",
+      "role": "Executive Director",
+      "bio": "Founder and Executive Director of Transport Futures Africa. Sarah is a Professor of Transport Policy at the University of Nairobi and has advised the African Union Commission, World Bank, and UN-Habitat on mobility and urban planning. Author of Moving Africa (2021).",
+      "twitter_url": "#",
+      "linkedin_url": "#",
+      "profile_url": "#",
+      "profile_label": "UoN Profile"
+    },
+    {
+      "name": "Dr. James Okafor",
+      "initials": "JO",
+      "role": "Head of Research",
+      "bio": "James leads the institute's research programme and manages the peer review process. His own research focuses on transport equity and the distributional effects of infrastructure investment in West African cities. Previously a Senior Researcher at the African Development Bank.",
+      "twitter_url": "#",
+      "linkedin_url": "#",
+      "profile_url": "",
+      "profile_label": ""
+    },
+    {
+      "name": "Dr. Amina Mwangi",
+      "initials": "AM",
+      "role": "Senior Fellow, Urban Mobility",
+      "bio": "Amina leads our urban mobility research programme, including our flagship informal transit integration project and our work on BRT equity across East African cities. Her expertise spans urban design, travel behaviour, and participatory planning methods.",
+      "twitter_url": "#",
+      "linkedin_url": "#",
+      "profile_url": "",
+      "profile_label": ""
+    },
+    {
+      "name": "Dr. Kwame Boateng",
+      "initials": "KB",
+      "role": "Senior Fellow, Rail & Corridors",
+      "bio": "Kwame leads our continental rail research, including our work on the Lobito Corridor, SGR outcomes, and rail governance across Africa. He has presented evidence to the AU Commission on three occasions and advises Ghana's Ministry of Railways Development.",
+      "twitter_url": "#",
+      "linkedin_url": "#",
+      "profile_url": "",
+      "profile_label": ""
+    },
+    {
+      "name": "Dr. Fatima Diallo",
+      "initials": "FD",
+      "role": "Research Fellow, E-Mobility",
+      "bio": "Fatima's research examines electric vehicle adoption, charging infrastructure, and the conditions for e-mobility leapfrogging in Francophone West Africa. She completed her PhD at Université Cheikh Anta Diop and was a Postdoctoral Fellow at Stellenbosch before joining us.",
+      "twitter_url": "#",
+      "linkedin_url": "#",
+      "profile_url": "",
+      "profile_label": ""
+    },
+    {
+      "name": "Moses Nkrumah",
+      "initials": "MN",
+      "role": "Director of Policy & Communications",
+      "bio": "Moses oversees our policy engagement, media relations, and government partnerships. Before joining Transport Futures Africa he spent seven years at the African Union Development Agency–NEPAD, working on infrastructure financing and transport corridor policy.",
+      "twitter_url": "#",
+      "linkedin_url": "#",
+      "profile_url": "",
+      "profile_label": ""
+    },
+    {
+      "name": "Dr. Leila Tadesse",
+      "initials": "LT",
+      "role": "Research Fellow, Climate & Transport",
+      "bio": "Leila leads our climate and transport programme, examining decarbonisation pathways, green financing mechanisms, and just transition frameworks for African transport systems. She holds a PhD in Environmental Policy from Addis Ababa University.",
+      "twitter_url": "#",
+      "linkedin_url": "#",
+      "profile_url": "",
+      "profile_label": ""
+    },
+    {
+      "name": "Ngozi Williams",
+      "initials": "NW",
+      "role": "Head of Engagement & Events",
+      "bio": "Ngozi manages our events programme, practitioner networks, and stakeholder engagement across the continent. She established the annual Transport Futures Africa Conference and has grown it from 90 attendees in 2018 to over 400 today, spanning 25 countries.",
+      "twitter_url": "#",
+      "linkedin_url": "#",
+      "profile_url": "",
+      "profile_label": ""
+    }
+  ]
+}

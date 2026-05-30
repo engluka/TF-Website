@@ -1,0 +1,112 @@
+{
+  "papers": [
+    {
+      "title": "Informal Transit and the Future City: Integrating Matatus, Trotros, and Minibuses into Formal Networks",
+      "category": "urban",
+      "tag": "Urban Mobility",
+      "date": "2025-03-01",
+      "date_display": "March 2025",
+      "summary": "Examining how 14 African cities are formalising informal transport operators — and which regulatory models best balance operator livelihoods with passenger safety and network efficiency.",
+      "pdf_url": "#",
+      "featured": true,
+      "featured_pages": 92,
+      "featured_cities": 28
+    },
+    {
+      "title": "Standard Gauge Railway Outcomes: Lessons from Kenya, Ethiopia, and Nigeria for Continental Rail Strategy",
+      "category": "rail",
+      "tag": "Rail & Corridors",
+      "date": "2025-02-01",
+      "date_display": "February 2025",
+      "summary": "A comparative assessment of SGR projects across East and West Africa, evaluating economic returns, modal shift, and the governance lessons for future continental connectivity.",
+      "pdf_url": "#",
+      "featured": false,
+      "featured_pages": null,
+      "featured_cities": null
+    },
+    {
+      "title": "E-Mobility Leapfrogging: Can Africa Skip Fossil-Fuel Transit and Go Straight to Electric?",
+      "category": "autonomous",
+      "tag": "E-Mobility",
+      "date": "2025-01-15",
+      "date_display": "January 2025",
+      "summary": "Assessing the infrastructure, financing, and policy conditions under which African countries could bypass combustion-engine mass transit and deploy electric BRT and rail as a first-generation formal network.",
+      "pdf_url": "#",
+      "featured": false,
+      "featured_pages": null,
+      "featured_cities": null
+    },
+    {
+      "title": "BRT in Africa: A Review of Outcomes Across 12 Rapid Transit Systems",
+      "category": "urban",
+      "tag": "Urban Mobility",
+      "date": "2025-01-01",
+      "date_display": "January 2025",
+      "summary": "A systematic review of bus rapid transit performance across Lagos, Dar es Salaam, Johannesburg, and nine other African cities, assessing ridership, equity, and financial sustainability.",
+      "pdf_url": "#",
+      "featured": false,
+      "featured_pages": null,
+      "featured_cities": null
+    },
+    {
+      "title": "Single African Air Transport Market: Progress, Barriers, and the Path to Open Skies",
+      "category": "aviation",
+      "tag": "Aviation",
+      "date": "2024-12-01",
+      "date_display": "December 2024",
+      "summary": "Evaluating implementation progress of the SAATM agreement across 35 signatory states, identifying the regulatory, political, and infrastructure barriers that constrain intra-African air connectivity.",
+      "pdf_url": "#",
+      "featured": false,
+      "featured_pages": null,
+      "featured_cities": null
+    },
+    {
+      "title": "Walking Cities: The Case for Pedestrian Infrastructure Investment in Sub-Saharan Africa",
+      "category": "active",
+      "tag": "Last Mile",
+      "date": "2024-11-01",
+      "date_display": "November 2024",
+      "summary": "A multi-city study quantifying the economic and health value of pedestrian infrastructure across Kampala, Accra, Addis Ababa, and Lusaka — and the policy levers most effective at shifting investment priorities.",
+      "pdf_url": "#",
+      "featured": false,
+      "featured_pages": null,
+      "featured_cities": null
+    },
+    {
+      "title": "Boda Boda, Okada, and Bajaj: Motorcycle Taxis and the Urban Mobility Gap in East and West Africa",
+      "category": "active",
+      "tag": "Last Mile",
+      "date": "2024-10-01",
+      "date_display": "October 2024",
+      "summary": "An evaluation of motorcycle taxi operations across eight cities, measuring their role in filling last-mile connectivity gaps and the safety, regulatory, and emissions trade-offs of formalisation.",
+      "pdf_url": "#",
+      "featured": false,
+      "featured_pages": null,
+      "featured_cities": null
+    },
+    {
+      "title": "The Lobito Corridor: Economic Integration, Freight Potential, and the Governance Imperative",
+      "category": "rail",
+      "tag": "Rail & Corridors",
+      "date": "2024-09-01",
+      "date_display": "September 2024",
+      "summary": "An assessment of the revitalised Lobito Atlantic Railway corridor, modelling freight capacity, regional economic integration potential, and the governance framework needed to maximise public benefit.",
+      "pdf_url": "#",
+      "featured": false,
+      "featured_pages": null,
+      "featured_cities": null
+    },
+    {
+      "title": "Electric Two- and Three-Wheelers: Africa's Most Viable Path to Clean Urban Mobility?",
+      "category": "autonomous",
+      "tag": "E-Mobility",
+      "date": "2024-08-01",
+      "date_display": "August 2024",
+      "summary": "Survey and market analysis examining the adoption potential of electric motorcycles and auto-rickshaws across 10 African cities, exploring consumer attitudes, charging infrastructure needs, and financing barriers.",
+      "pdf_url": "#",
+      "featured": false,
+      "featured_pages": null,
+      "featured_cities": null
+    }
+  ]
+}

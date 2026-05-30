@@ -1183,7 +1183,7 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
 .team-avatar::before {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--c-navy-600) 0%, var(--c-navy) 100%);
+  background: var(--av-bg, linear-gradient(135deg, var(--c-navy-600) 0%, var(--c-navy) 100%));
 }
 .team-avatar span { position: relative; z-index: 1; }
 .team-card h4 { font-size: 1.15rem; margin-bottom: .2rem; }

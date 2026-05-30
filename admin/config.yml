@@ -1,0 +1,120 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+collections:
+
+  - name: research
+    label: Research Papers
+    files:
+      - name: papers
+        label: All Research Papers
+        file: data/research.json
+        fields:
+          - name: papers
+            label: Papers
+            widget: list
+            fields:
+              - { label: Title,          name: title,          widget: string }
+              - label: Category
+                name: category
+                widget: select
+                options:
+                  - { label: Urban Mobility,  value: urban }
+                  - { label: Rail & Corridors, value: rail }
+                  - { label: Aviation,         value: aviation }
+                  - { label: Last Mile,        value: active }
+                  - { label: E-Mobility,       value: autonomous }
+              - { label: Tag (display label), name: tag,          widget: string }
+              - { label: Date,           name: date,           widget: date, format: YYYY-MM-DD }
+              - { label: Date Display,   name: date_display,   widget: string, hint: "e.g. March 2025" }
+              - { label: Summary,        name: summary,        widget: text }
+              - { label: PDF / Report URL, name: pdf_url,      widget: string, required: false }
+              - { label: Featured (shown prominently), name: featured, widget: boolean, default: false }
+              - { label: Featured — Page count,        name: featured_pages,  widget: number, required: false }
+              - { label: Featured — Cities studied,    name: featured_cities, widget: number, required: false }
+
+  - name: events
+    label: Events
+    files:
+      - name: events
+        label: All Events
+        file: data/events.json
+        fields:
+          - name: upcoming
+            label: Upcoming Events
+            widget: list
+            fields:
+              - { label: Title,        name: title,       widget: string }
+              - label: Type
+                name: type
+                widget: select
+                options: [Annual Conference, Webinar, Policy Roundtable, Public Lecture, Workshop, Symposium]
+              - { label: Date (for sorting), name: date,        widget: date, format: YYYY-MM-DD }
+              - { label: Date Display,       name: date_display, widget: string, hint: "e.g. 14–15 June 2025" }
+              - { label: Day number,         name: day,          widget: string, hint: "e.g. 14" }
+              - { label: Month abbreviation, name: month,        widget: string, hint: "e.g. Jun" }
+              - { label: Location,           name: location,     widget: string }
+              - { label: Description,        name: description,  widget: text }
+              - { label: Registration URL,   name: registration_url,   widget: string, required: false }
+              - { label: Registration Button Label, name: registration_label, widget: string, required: false }
+              - label: Button Style
+                name: registration_style
+                widget: select
+                options: [btn-primary, btn-ghost]
+                default: btn-ghost
+                required: false
+          - name: past
+            label: Past Events
+            widget: list
+            fields:
+              - { label: Title,        name: title,        widget: string }
+              - { label: Date Display, name: date_display, widget: string, hint: "e.g. March 2025" }
+              - { label: Location,     name: location,     widget: string }
+
+  - name: team
+    label: Team Members
+    files:
+      - name: team
+        label: All Team Members
+        file: data/team.json
+        fields:
+          - name: members
+            label: Members
+            widget: list
+            fields:
+              - { label: Name,               name: name,          widget: string }
+              - { label: Initials (2 letters), name: initials,    widget: string }
+              - { label: Role / Title,        name: role,         widget: string }
+              - { label: Bio,                 name: bio,          widget: text }
+              - { label: Twitter URL,         name: twitter_url,  widget: string, required: false }
+              - { label: LinkedIn URL,        name: linkedin_url, widget: string, required: false }
+              - { label: Profile URL,         name: profile_url,  widget: string, required: false }
+              - { label: Profile Link Label,  name: profile_label, widget: string, required: false }
+
+  - name: news
+    label: News & Commentary
+    files:
+      - name: news
+        label: All News
+        file: data/news.json
+        fields:
+          - name: featured
+            label: Featured Article
+            widget: object
+            fields:
+              - { label: Title,        name: title,        widget: string }
+              - { label: Summary,      name: summary,      widget: text }
+              - { label: Date Display, name: date_display, widget: string }
+              - { label: Type,         name: type,         widget: string, hint: "e.g. Press Release" }
+              - { label: URL,          name: url,          widget: string, required: false }
+          - name: items
+            label: News Items
+            widget: list
+            fields:
+              - { label: Title,        name: title,        widget: string }
+              - { label: Summary,      name: summary,      widget: text }
+              - { label: Date Display, name: date_display, widget: string }

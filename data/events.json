@@ -1,0 +1,88 @@
+{
+  "upcoming": [
+    {
+      "title": "Transport Futures Africa Annual Conference 2025: Connecting the Continent",
+      "type": "Annual Conference",
+      "date": "2025-06-14",
+      "date_display": "14–15 June 2025",
+      "day": "14",
+      "month": "Jun",
+      "location": "KICC, Nairobi, Kenya",
+      "description": "Our flagship annual gathering brings together 400+ transport researchers, practitioners, and senior policymakers from across Africa for two days of keynotes, panel discussions, and working sessions on the continent's most urgent mobility challenges.",
+      "registration_url": "#",
+      "registration_label": "Register Now",
+      "registration_style": "btn-primary"
+    },
+    {
+      "title": "Electric Mobility in Africa: What the New AfDB Strategy Gets Right and Wrong",
+      "type": "Webinar",
+      "date": "2025-05-22",
+      "date_display": "22 May 2025, 12:00–13:30 EAT",
+      "day": "22",
+      "month": "May",
+      "location": "Online (Zoom)",
+      "description": "Prof. Sarah Chen and Dr. James Okafor present our rapid response analysis of the African Development Bank's new Green Mobility Strategy, with a discussion of what's missing and where the real policy leverage for African governments lies.",
+      "registration_url": "#",
+      "registration_label": "Register Free",
+      "registration_style": "btn-ghost"
+    },
+    {
+      "title": "Urban Freight and Last-Mile Logistics: Policy Solutions for Africa's Congested Cities",
+      "type": "Policy Roundtable",
+      "date": "2025-06-03",
+      "date_display": "3 June 2025, 14:00–17:00 WAT",
+      "day": "3",
+      "month": "Jun",
+      "location": "Eko Hotel, Lagos, Nigeria",
+      "description": "An invitation-only roundtable for urban planners, logistics operators, and transport ministry officials to discuss regulatory and infrastructure solutions for urban freight congestion across West Africa's megacities. <em style=\"color:var(--c-grey-400)\">Invitation only — contact us to express interest.</em>",
+      "registration_url": "",
+      "registration_label": "",
+      "registration_style": "btn-ghost"
+    },
+    {
+      "title": "The Annual Transport Futures Africa Lecture: Infrastructure, Equity, and the African City",
+      "type": "Public Lecture",
+      "date": "2025-07-10",
+      "date_display": "10 July 2025, 18:30 EAT",
+      "day": "10",
+      "month": "Jul",
+      "location": "Alliance Française, Nairobi",
+      "description": "Our annual public lecture, open to all. This year's lecturer is Prof. Vanessa Watson (University of Cape Town) speaking on planning for informality — why Africa's cities need new frameworks, not borrowed ones.",
+      "registration_url": "#",
+      "registration_label": "Join Waiting List",
+      "registration_style": "btn-ghost"
+    }
+  ],
+  "past": [
+    {
+      "title": "East African Rail Symposium: Continental Connectivity or White Elephants?",
+      "date_display": "March 2025",
+      "location": "Kampala"
+    },
+    {
+      "title": "West Africa Freight Forum 2025",
+      "date_display": "February 2025",
+      "location": "Accra"
+    },
+    {
+      "title": "Annual Lecture: The Political Economy of African Transport Finance",
+      "date_display": "January 2025",
+      "location": "Nairobi"
+    },
+    {
+      "title": "Roundtable: EV Charging Infrastructure for African Cities",
+      "date_display": "November 2024",
+      "location": "Online"
+    },
+    {
+      "title": "Annual Conference 2024: The Leapfrog Decade",
+      "date_display": "June 2024",
+      "location": "Kigali"
+    },
+    {
+      "title": "Informal Transit & Equity Summit",
+      "date_display": "April 2024",
+      "location": "Dar es Salaam"
+    }
+  ]
+}
