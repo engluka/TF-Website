@@ -177,7 +177,7 @@ if (nlForm) {
 
 // ---- Contact form (Formspree) ----
 // Replace YOUR_FORM_ID below with the ID from formspree.io/forms
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xvzyyelv';
 
 const ctForm = document.querySelector('.contact-form');
 if (ctForm) {
