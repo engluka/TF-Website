@@ -192,9 +192,16 @@ if (nlForm) {
       });
 
       if (res.ok || res.status === 204) {
+        let alreadySubscribed = false;
+        try {
+          ({ alreadySubscribed } = await res.json());
+        } catch { /* no JSON body */ }
+
         input.value = '';
-        input.placeholder = 'Thanks for subscribing!';
-        btn.textContent = 'Subscribed!';
+        input.placeholder = alreadySubscribed
+          ? "You're already subscribed!"
+          : 'Thanks for subscribing!';
+        btn.textContent = alreadySubscribed ? 'Already subscribed' : 'Subscribed!';
         btn.style.background = '#059669';
         btn.style.borderColor = '#059669';
         setTimeout(() => {

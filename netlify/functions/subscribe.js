@@ -46,26 +46,36 @@ exports.handler = async (event) => {
       return { statusCode: res.status, body: text };
     }
 
-    // Send welcome email (don't fail the subscription if this errors)
-    try {
-      await fetch('https://api.brevo.com/v3/smtp/email', {
-        method: 'POST',
-        headers: {
-          'api-key': process.env.BREVO_API_KEY,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          sender: SENDER,
-          to: [{ email }],
-          subject: 'Welcome to Transport Futures',
-          htmlContent: welcomeEmail
-        })
-      });
-    } catch (e) {
-      console.error('Welcome email failed:', e.message);
+    // Brevo returns 201 when a new contact is created and 204 when an existing
+    // contact is updated — use that to flag a repeat subscriber.
+    const alreadySubscribed = res.status === 204;
+
+    // Only welcome brand-new subscribers (don't fail the request if this errors)
+    if (!alreadySubscribed) {
+      try {
+        await fetch('https://api.brevo.com/v3/smtp/email', {
+          method: 'POST',
+          headers: {
+            'api-key': process.env.BREVO_API_KEY,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            sender: SENDER,
+            to: [{ email }],
+            subject: 'Welcome to Transport Futures',
+            htmlContent: welcomeEmail
+          })
+        });
+      } catch (e) {
+        console.error('Welcome email failed:', e.message);
+      }
     }
 
-    return { statusCode: 200, body: 'OK' };
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ alreadySubscribed })
+    };
   } catch (err) {
     return { statusCode: 500, body: err.message };
   }
