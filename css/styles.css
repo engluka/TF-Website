@@ -1192,6 +1192,58 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
 .team-socials a { font-size: .75rem; color: var(--c-grey-400); transition: color .25s ease; }
 .team-socials a:hover { color: var(--c-teal); }
 
+/* ----- Collapsible team bio ----- */
+.bio-toggle {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  background: transparent;
+  border: 1px solid var(--c-grey-200);
+  border-radius: 100px;
+  padding: .5rem .95rem;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-grey-600);
+  transition: border-color .25s ease, color .25s ease, background .25s ease;
+}
+.bio-toggle:hover {
+  border-color: var(--c-teal);
+  color: var(--c-teal);
+  background: rgba(0, 196, 204, .07);
+}
+.bio-toggle:focus-visible { outline: 2px solid var(--c-teal); outline-offset: 2px; }
+.team-card.open .bio-toggle { border-color: var(--c-teal); color: var(--c-teal); }
+
+.bio-toggle-ic { position: relative; width: 16px; height: 16px; flex-shrink: 0; }
+.bio-toggle-ic::before,
+.bio-toggle-ic::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: currentColor;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+}
+.bio-toggle-ic::before { width: 11px; height: 2px; }
+.bio-toggle-ic::after  { width: 2px; height: 11px; }
+.team-card.open .bio-toggle-ic::after { transform: translate(-50%, -50%) rotate(90deg); }
+
+.team-bio-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .4s cubic-bezier(.4, 0, .2, 1);
+}
+.team-card.open .team-bio-wrap { grid-template-rows: 1fr; }
+.team-bio-inner { overflow: hidden; }
+.team-bio-inner p { margin: .9rem 0 0; }
+
 /* ========== CONTACT PAGE ========== */
 .contact-layout {
   max-width: var(--max-w);

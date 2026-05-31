@@ -152,10 +152,29 @@ async function renderTeam() {
         ${avatar}
         <h4>${m.name}</h4>
         <div class="team-role">${m.role}</div>
-        <p>${m.bio}</p>
-        ${socials ? `<div class="team-socials">${socials}</div>` : ''}
+        <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="team-bio-${i}">
+          <span class="bio-toggle-ic" aria-hidden="true"></span>
+          <span class="bio-toggle-label">Read bio</span>
+        </button>
+        <div class="team-bio-wrap" id="team-bio-${i}">
+          <div class="team-bio-inner">
+            <p>${m.bio}</p>
+            ${socials ? `<div class="team-socials">${socials}</div>` : ''}
+          </div>
+        </div>
       </div>`;
   }).join('');
+
+  // Toggle a card's bio open/closed (event delegation across the grid)
+  gridEl.addEventListener('click', e => {
+    const btn = e.target.closest('.bio-toggle');
+    if (!btn) return;
+    const card = btn.closest('.team-card');
+    const open = card.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    const label = btn.querySelector('.bio-toggle-label');
+    if (label) label.textContent = open ? 'Hide bio' : 'Read bio';
+  });
 }
 
 // ---- Site Settings ----
