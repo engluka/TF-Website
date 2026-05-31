@@ -6,7 +6,11 @@
       "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\aammekonnen\\\\OneDrive\\\\Products\\\\TF Website\\\\css\")",
       "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\Users\\\\aammekonnen\\\\OneDrive\\\\Products\\\\TF Website\\\\js\")",
       "PowerShell(New-Item -ItemType Directory -Path \"C:\\\\Users\\\\aammekonnen\\\\OneDrive\\\\Products\\\\TF Website\\\\images\" -Force)",
-      "PowerShell(Start-Process python -ArgumentList \"-m\", \"http.server\", \"3456\" -WorkingDirectory \"c:\\\\Users\\\\aammekonnen\\\\OneDrive\\\\Products\\\\TF Website\" -WindowStyle Hidden)"
+      "PowerShell(Start-Process python -ArgumentList \"-m\", \"http.server\", \"3456\" -WorkingDirectory \"c:\\\\Users\\\\aammekonnen\\\\OneDrive\\\\Products\\\\TF Website\" -WindowStyle Hidden)",
+      "mcp__claude_ai_Netlify__netlify-project-services-reader",
+      "mcp__claude_ai_Netlify__netlify-user-services-reader",
+      "mcp__claude_ai_Netlify__netlify-deploy-services-updater",
+      "PowerShell(git -C \"c:\\\\Users\\\\aammekonnen\\\\OneDrive\\\\Products\\\\TF Website\" status --short)"
     ]
   }
 }
