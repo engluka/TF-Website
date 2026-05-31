@@ -35,7 +35,7 @@
     },
     {
       "twitter_url": "#",
-      "bio": "An academic and researcher focusing on sustainable development, economics, energy, environment, and climate change. As a member of energy associations, Judith provides a unique interdisciplinary perspective to the organization's endeavors.",
+      "bio": "An academic and researcher focusing on sustainable development, economics, energy, environment, and climate change. As a member of energy associations, Judith provides a unique interdisciplinary perspective to the institute's endeavors.",
       "name": "Judith Flavia",
       "linkedin_url": "https://www.linkedin.com/in/judith-flavia-nakirijja-3947a41aa/",
       "initials": "JF",
@@ -78,12 +78,13 @@
       "profile_label": ""
     },
     {
-      "name": "Ngozi Williams",
-      "initials": "NW",
-      "role": "Head of Engagement & Events",
-      "bio": "Ngozi manages our events programme, practitioner networks, and stakeholder engagement across the continent. She established the annual Transport Futures Africa Conference and has grown it from 90 attendees in 2018 to over 400 today, spanning 25 countries.",
       "twitter_url": "#",
+      "bio": "Gaya provides strategic legal guidance to our organization, helping us navigate complex legal and regulatory environments while supporting sound decision-making and risk management. He is committed to advancing accountability, transparency, and effective governance through high-quality legal counsel and professional excellence.",
+      "name": "Gaya",
       "linkedin_url": "#",
+      "initials": "G",
+      "photo": "/images/uploads/gaya_bw.png",
+      "role": "Legal Consultant",
       "profile_url": "",
       "profile_label": ""
     }
