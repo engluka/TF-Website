@@ -12,12 +12,13 @@
       "profile_label": "UoN Profile"
     },
     {
-      "name": "Anteneh Mekonnen",
-      "initials": "AM",
-      "role": "Research Director",
-      "bio": "Anteneh is a seasoned professional in transport planning holding a PhD in Safe and Sustainable Urban Mobility. Anteneh has been leading projects in various countries on enhancing urban safety and liveability for over a decade and half. ",
       "twitter_url": "#",
+      "bio": "Anteneh is a seasoned professional in transport planning holding a PhD in Safe and Sustainable Urban Mobility. Anteneh has been leading projects in various countries on enhancing urban safety and liveability for over a decade and half. ",
+      "name": "Anteneh Mekonnen",
       "linkedin_url": "https://nl.linkedin.com/in/antenehamekonnen",
+      "initials": "AM",
+      "photo": "/images/uploads/anteneh_bw-croped.jpg",
+      "role": "Research Director",
       "profile_url": "",
       "profile_label": ""
     },
@@ -36,7 +37,7 @@
       "bio": "An academic and researcher focusing on sustainable development, economics, energy, environment, and climate change. As a member of energy associations, Judith provides a unique interdisciplinary perspective to the institute's endeavors.",
       "name": "Judith Flavia",
       "linkedin_url": "https://www.linkedin.com/in/judith-flavia-nakirijja-3947a41aa/",
-      "initials": "KB",
+      "initials": "JF",
       "photo": "/images/uploads/judith_bw.jpg",
       "role": "Senior Associate, Transport & Energy Economics",
       "profile_url": "",
