@@ -279,6 +279,10 @@ if (ctForm) {
     btn.textContent = 'Sending…';
     btn.disabled = true;
 
+    // Capture the newsletter opt-in before the form is reset below
+    const wantsNewsletter = ctForm.querySelector('#contactNewsletter')?.checked;
+    const contactEmail = ctForm.querySelector('#contactEmail')?.value.trim();
+
     try {
       const data = new FormData(ctForm);
       const res = await fetch(FORMSPREE_ENDPOINT, {
@@ -288,6 +292,18 @@ if (ctForm) {
       });
 
       if (res.ok) {
+        // If they ticked the newsletter box, also subscribe them via Brevo.
+        // Wrapped separately so a newsletter hiccup never fails the message.
+        if (wantsNewsletter && contactEmail) {
+          try {
+            await fetch('/.netlify/functions/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: contactEmail })
+            });
+          } catch { /* contact message already sent — ignore */ }
+        }
+
         btn.style.display = 'none';
         if (successMsg) successMsg.style.display = 'flex';
         ctForm.reset();
