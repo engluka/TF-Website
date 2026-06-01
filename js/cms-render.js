@@ -289,10 +289,17 @@ async function renderHome() {
 }
 
 // ---- Init ----
+// Tell the rest of the page when dynamic sections have been injected. They grow
+// the document, so anything that scrolls to an anchor (e.g. the Subscribe link
+// → #newsletter) must wait for this so it doesn't target a stale position.
+function signalRendered() {
+  document.dispatchEvent(new Event('cms:rendered'));
+}
+
 const _page = window.location.pathname.split('/').pop().replace(/\.html$/, '') || 'index';
 if (_page === 'index' || _page === '') {
   applySettings().catch(console.error);
-  renderHome().catch(console.error);
-} else if (_page === 'research') renderResearch().catch(console.error);
-else if (_page === 'events')     renderEvents().catch(console.error);
-else if (_page === 'team')       renderTeam().catch(console.error);
+  renderHome().catch(console.error).finally(signalRendered);
+} else if (_page === 'research') renderResearch().catch(console.error).finally(signalRendered);
+else if (_page === 'events')     renderEvents().catch(console.error).finally(signalRendered);
+else if (_page === 'team')       renderTeam().catch(console.error).finally(signalRendered);

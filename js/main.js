@@ -60,6 +60,50 @@ window.addEventListener('load', () => {
   });
 });
 
+// ---- In-page anchor scrolling (robust to late-loading content) ----
+// cms-render.js injects the News/Research sections after fetching their JSON,
+// which grows the page and pushes lower anchors (e.g. #newsletter) further down.
+// If a hash link is followed before that content lands, the browser scrolls to a
+// stale position — that's why the first "Subscribe" click stopped at News &
+// Commentary and only the second reached the form. Gate same-page hash scrolling
+// until cms-render signals (via 'cms:rendered') that the dynamic content is in.
+(function () {
+  const page = (location.pathname.split('/').pop() || 'index').replace(/\.html$/, '');
+  const hasDynamic = ['index', '', 'research', 'events', 'team'].includes(page);
+  let ready = !hasDynamic;
+  document.addEventListener('cms:rendered', () => { ready = true; }, { once: true });
+
+  function scrollToId(id) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    const go = () => target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (ready) { go(); return; }
+    let done = false;
+    const once = () => { if (done) return; done = true; go(); };
+    document.addEventListener('cms:rendered', once, { once: true });
+    setTimeout(once, 2500); // safety net if rendering never signals
+  }
+
+  document.querySelectorAll('a[href*="#"]').forEach(a => {
+    let url;
+    try { url = new URL(a.getAttribute('href'), location.href); } catch { return; }
+    if (url.pathname !== location.pathname || !url.hash || url.hash === '#') return;
+    a.addEventListener('click', e => {
+      const id = decodeURIComponent(url.hash.slice(1));
+      if (!document.getElementById(id)) return;
+      e.preventDefault();
+      history.pushState(null, '', url.hash);
+      scrollToId(id);
+    });
+  });
+
+  // Arriving with a hash from another page (e.g. index.html#newsletter): the
+  // browser's initial jump fires before the dynamic content lands, so realign.
+  if (location.hash && location.hash !== '#') {
+    window.addEventListener('load', () => scrollToId(decodeURIComponent(location.hash.slice(1))));
+  }
+})();
+
 // ---- Counter animation ----
 function runCounter(el) {
   const target   = parseInt(el.dataset.count, 10);
