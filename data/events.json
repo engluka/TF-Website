@@ -27,17 +27,17 @@
       "description": "Dr. Anteneh is attending the AfroSAFE Annual Conference in Lusaka, Zambia, and teaching in the traffic safety course on the topic of Safe Infrastructure."
     },
     {
-      "month": "Jun",
+      "month": "Sep",
       "registration_url": "",
       "registration_style": "btn-ghost",
       "date": "2025-06-03",
       "registration_label": "",
-      "date_display": "3 June 2025, 14:00–17:00 WAT",
-      "location": "Eko Hotel, Lagos, Nigeria",
-      "title": "Urban Freight and Last-Mile Logistics: Policy Solutions for Africa's Congested Cities",
+      "date_display": "September 28–30, 2026",
+      "location": "Cape Town, South Africa",
+      "title": "Africa E-Mobility Week",
       "type": "Policy Roundtable",
-      "day": "3",
-      "description": "An invitation-only roundtable for urban planners, logistics operators, and transport ministry officials to discuss regulatory and infrastructure solutions for urban freight congestion across West Africa's megacities. <em style=\"color:var(--c-grey-400)\">Invitation only — contact us to express interest.</em>"
+      "day": "28",
+      "description": "Co-convened by the Africa E-Mobility Alliance (AfEMA) and the UN Environment Programme (UNEP), the event serves as a high-level continental platform bridging the gap between policy, finance, and practical implementation. Transport Futures will join the conversation. "
     },
     {
       "month": "Jul",
