@@ -37,7 +37,17 @@ I'll send you the **setup key** (a short password) separately — please keep it
 
 Done. Now when you reply to someone who wrote to your TF address, it goes out as your @transportfutures.org address.
 
-*Optional:* create a filter (To: your TF address → apply a label) to keep TF mail neatly separated from personal mail.
+## Keep your TF mail organized (optional)
+
+Add a Gmail filter so everything sent to your TF address is automatically labeled — handy for separating work mail from personal mail in the same inbox.
+
+1. In Gmail, click the **sliders icon** (Show search options) on the right of the search bar.
+2. In the **To** field, type your TF address (e.g. kadja@transportfutures.org), then click **Create filter**.
+3. Tick **Apply the label** → click the dropdown → **New label…** → name it (e.g. **Transport Futures**) → **Create**.
+4. *(Optional)* also tick **Also apply filter to matching conversations** to label mail already in your inbox.
+5. Click **Create filter**.
+
+Now all mail to your TF address is labeled automatically and shows up under that label in your left sidebar. Tip: hover the label, click the three dots, then **Label color** to give it a colour.
 
 ## If you don't use Gmail
 
