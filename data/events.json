@@ -40,17 +40,17 @@
       "description": "Co-convened by the Africa E-Mobility Alliance (AfEMA) and the UN Environment Programme (UNEP), the event serves as a high-level continental platform bridging the gap between policy, finance, and practical implementation. Transport Futures will join the conversation. "
     },
     {
-      "month": "Jul",
+      "month": "Sep",
       "registration_url": "#",
       "registration_style": "btn-ghost",
       "date": "2025-07-10",
       "registration_label": "Join Waiting List",
-      "date_display": "10 July 2025, 18:30 EAT",
-      "location": "Alliance Française, Nairobi",
-      "title": "The Annual Transport Futures Lecture: Infrastructure, Equity, and the African City",
-      "type": "Public Lecture",
+      "date_display": "10 September 2026, 18:30 EAT",
+      "location": "Online",
+      "title": "Infrastructure, Equity, and the African City",
+      "type": "Webinar",
       "day": "10",
-      "description": "Our annual public lecture, open to all. This year's lecturer is Prof. Vanessa Watson (University of Cape Town) speaking on planning for informality — why Africa's cities need new frameworks, not borrowed ones."
+      "description": "Dr. Anteneh will be speaking on planning for informality — why Africa's cities need new frameworks, not borrowed ones."
     }
   ],
   "past": [
