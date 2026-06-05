@@ -23,6 +23,15 @@ async function loadJSON(path) {
   return res.json();
 }
 
+// Escape a string for safe use inside a double-quoted HTML attribute.
+function escapeAttr(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
 // ---- Research Page ----
 async function renderResearch() {
   const featuredEl = document.getElementById('featured-report');
@@ -99,6 +108,15 @@ async function renderEvents() {
   if (upcomingEl) {
     upcomingEl.innerHTML = data.upcoming.map(ev => {
       const isOnline = /online|zoom/i.test(ev.location);
+      const btnClass = `btn ${ev.registration_style || 'btn-ghost'}`;
+      const btnStyle = 'padding:.65rem 1.5rem;font-size:.82rem';
+      let regBtn = '';
+      if (ev.registration_action === 'waitlist') {
+        // Opens the in-page waiting-list sign-up modal (wired up below)
+        regBtn = `<button type="button" class="${btnClass} js-waitlist-open" data-event-title="${escapeAttr(ev.title)}" style="${btnStyle}">${ev.registration_label || 'Join Waiting List'}</button>`;
+      } else if (ev.registration_url && ev.registration_url !== '#') {
+        regBtn = `<a href="${ev.registration_url}" class="${btnClass}" style="${btnStyle}">${ev.registration_label || 'Register'}</a>`;
+      }
       return `
         <div class="event-item">
           <div class="event-date-box">
@@ -113,10 +131,12 @@ async function renderEvents() {
               <div class="event-meta-item">${isOnline ? ICON_SCREEN : ICON_PIN} ${ev.location}</div>
             </div>
             <p>${ev.description}</p>
-            ${ev.registration_url ? `<div style="margin-top:1rem"><a href="${ev.registration_url}" class="btn ${ev.registration_style || 'btn-ghost'}" style="padding:.65rem 1.5rem;font-size:.82rem">${ev.registration_label || 'Register'}</a></div>` : ''}
+            ${regBtn ? `<div style="margin-top:1rem">${regBtn}</div>` : ''}
           </div>
         </div>`;
     }).join('');
+
+    initWaitlist(upcomingEl);
   }
 
   if (pastEl) {
@@ -126,6 +146,113 @@ async function renderEvents() {
         <span>${ev.date_display} · ${ev.location}</span>
       </div>`).join('');
   }
+}
+
+// ---- Waiting-list sign-up modal ----
+// Injects a single shared modal and wires up every "Join Waiting List" button.
+// Submitting registers the email on the dedicated Brevo waiting-list via the
+// existing /subscribe function (type: 'waitlist'), mirroring the newsletter UX.
+function initWaitlist(scopeEl) {
+  const triggers = scopeEl.querySelectorAll('.js-waitlist-open');
+  if (!triggers.length) return;
+
+  // Build the modal once
+  let modal = document.getElementById('waitlist-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'waitlist-modal';
+    modal.className = 'waitlist-modal';
+    modal.setAttribute('aria-hidden', 'true');
+    modal.innerHTML = `
+      <div class="waitlist-backdrop" data-wl-close></div>
+      <div class="waitlist-card" role="dialog" aria-modal="true" aria-labelledby="waitlist-title">
+        <button type="button" class="waitlist-close" data-wl-close aria-label="Close">&#x2715;</button>
+        <div class="label">Waiting List</div>
+        <h3 id="waitlist-title">Join the waiting list</h3>
+        <p class="waitlist-event"></p>
+        <p class="waitlist-intro">Add your email and we'll let you know as soon as registration opens.</p>
+        <form class="waitlist-form">
+          <input type="email" name="email" placeholder="Your email address" required aria-label="Email address">
+          <button type="submit" class="btn btn-primary">Join</button>
+        </form>
+      </div>`;
+    document.body.appendChild(modal);
+  }
+
+  const card     = modal.querySelector('.waitlist-card');
+  const eventEl  = modal.querySelector('.waitlist-event');
+  const form     = modal.querySelector('.waitlist-form');
+  const input    = form.querySelector('input[type="email"]');
+  const submitBtn = form.querySelector('button[type="submit"]');
+  let lastTrigger = null;
+  let currentEvent = '';
+
+  const open = (trigger) => {
+    lastTrigger = trigger;
+    currentEvent = trigger.dataset.eventTitle || '';
+    eventEl.textContent = currentEvent;
+    // Reset form state each time it opens
+    form.style.display = '';
+    input.value = '';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Join';
+    submitBtn.style.background = '';
+    submitBtn.style.borderColor = '';
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => input.focus(), 50);
+  };
+
+  const close = () => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastTrigger) lastTrigger.focus();
+  };
+
+  triggers.forEach(t => t.addEventListener('click', () => open(t)));
+  modal.querySelectorAll('[data-wl-close]').forEach(el => el.addEventListener('click', close));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) close();
+  });
+  // Don't let clicks inside the card bubble to the backdrop
+  card.addEventListener('click', e => e.stopPropagation());
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = input.value.trim();
+    if (!email) return;
+
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Joining…';
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch('/.netlify/functions/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, type: 'waitlist', eventTitle: currentEvent })
+      });
+
+      if (res.ok || res.status === 204) {
+        let alreadySubscribed = false;
+        try { ({ alreadySubscribed } = await res.json()); } catch { /* no JSON body */ }
+
+        submitBtn.textContent = alreadySubscribed ? 'Already on the list' : "You're on the list!";
+        submitBtn.style.background = '#059669';
+        submitBtn.style.borderColor = '#059669';
+        input.value = '';
+        setTimeout(close, 1800);
+      } else {
+        throw new Error();
+      }
+    } catch {
+      submitBtn.textContent = 'Try again';
+      submitBtn.disabled = false;
+      setTimeout(() => { submitBtn.textContent = originalText; }, 2500);
+    }
+  });
 }
 
 // ---- Team Page ----

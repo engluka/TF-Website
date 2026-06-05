@@ -77,6 +77,15 @@ collections:
               - { label: Month abbreviation, name: month,        widget: string, hint: "e.g. Jun" }
               - { label: Location,           name: location,     widget: string }
               - { label: Description,        name: description,  widget: text }
+              - label: Button Action
+                name: registration_action
+                widget: select
+                options:
+                  - { label: 'External link', value: link }
+                  - { label: 'Join waiting list (in-page form)', value: waitlist }
+                default: link
+                required: false
+                hint: "Pick 'Join waiting list' to open the email sign-up form instead of linking out."
               - { label: Registration URL,   name: registration_url,   widget: string, required: false }
               - { label: Registration Button Label, name: registration_label, widget: string, required: false }
               - label: Button Style

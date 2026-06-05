@@ -41,7 +41,8 @@
     },
     {
       "month": "Sep",
-      "registration_url": "#",
+      "registration_url": "",
+      "registration_action": "waitlist",
       "registration_style": "btn-ghost",
       "date": "2025-07-10",
       "registration_label": "Join Waiting List",
