@@ -98,6 +98,25 @@ function initResearchFilter() {
 }
 
 // ---- Events Page ----
+// Parse a "YYYY-MM-DD" sort date into a local-midnight Date (null if missing/invalid).
+function parseEventDate(s) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s || '');
+  return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+}
+
+// An event is "past" once it has fully concluded — strictly before today.
+// Multi-day events use end_date if present, otherwise the start date.
+function eventHasPassed(ev, today) {
+  const ref = parseEventDate(ev.end_date) || parseEventDate(ev.date);
+  return ref ? ref < today : false; // no/invalid date → keep it in upcoming
+}
+
+// Sort key for chronological ordering; undated events sort to the end.
+function eventDateKey(ev) {
+  const d = parseEventDate(ev.date);
+  return d ? d.getTime() : Number.POSITIVE_INFINITY;
+}
+
 async function renderEvents() {
   const upcomingEl = document.getElementById('events-upcoming');
   const pastEl = document.getElementById('events-past');
@@ -105,8 +124,24 @@ async function renderEvents() {
 
   const data = await loadJSON('data/events.json');
 
+  // Reclassify at render time: any "upcoming" event whose date has passed moves
+  // into the past list, so the page stays current without editing the JSON.
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const allUpcoming = Array.isArray(data.upcoming) ? data.upcoming : [];
+  const stillUpcoming = allUpcoming
+    .filter(ev => !eventHasPassed(ev, today))
+    .sort((a, b) => eventDateKey(a) - eventDateKey(b)); // soonest first
+  const justPassed = allUpcoming
+    .filter(ev => eventHasPassed(ev, today))
+    .sort((a, b) => eventDateKey(b) - eventDateKey(a)); // most recent first
+
+  // Freshly-passed events are the most recent, so they lead the past list.
+  const pastEvents = justPassed.concat(Array.isArray(data.past) ? data.past : []);
+
   if (upcomingEl) {
-    upcomingEl.innerHTML = data.upcoming.map(ev => {
+    upcomingEl.innerHTML = stillUpcoming.map(ev => {
       const isOnline = /online|zoom/i.test(ev.location);
       const btnClass = `btn ${ev.registration_style || 'btn-ghost'}`;
       const btnStyle = 'padding:.65rem 1.5rem;font-size:.82rem';
@@ -140,7 +175,7 @@ async function renderEvents() {
   }
 
   if (pastEl) {
-    pastEl.innerHTML = data.past.map(ev => `
+    pastEl.innerHTML = pastEvents.map(ev => `
       <div class="past-event-item">
         <h6>${ev.title}</h6>
         <span>${ev.date_display} · ${ev.location}</span>

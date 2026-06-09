@@ -72,6 +72,7 @@ collections:
                 widget: select
                 options: [Annual Conference, Webinar, Policy Roundtable, Public Lecture, Workshop, Symposium]
               - { label: Date (for sorting), name: date,        widget: date, format: YYYY-MM-DD }
+              - { label: End Date (optional, for multi-day events), name: end_date, widget: date, format: YYYY-MM-DD, required: false, hint: "Set for multi-day events so they stay in 'Upcoming' until the last day. Leave blank for single-day events." }
               - { label: Date Display,       name: date_display, widget: string, hint: "e.g. 14–15 June 2025" }
               - { label: Day number,         name: day,          widget: string, hint: "e.g. 14" }
               - { label: Month abbreviation, name: month,        widget: string, hint: "e.g. Jun" }
