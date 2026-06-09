@@ -96,5 +96,14 @@
       "initials": "DA",
       "photo": "/images/uploads/dagim_bw.jpg"
     }
+  ],
+  "advisors": [
+    {
+      "name": "Christian Hochfeld",
+      "photo": "/images/uploads/christian.jpg",
+      "role": "Agora Verkehrswende",
+      "linkedin_url": "https://www.linkedin.com/in/christian-hochfeld-1417848/",
+      "initials": "CH"
+    }
   ]
 }
