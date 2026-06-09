@@ -1244,6 +1244,19 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
 .team-bio-inner { overflow: hidden; }
 .team-bio-inner p { margin: .9rem 0 0; }
 
+/* ----- Board of Advisors (compact variant of the team grid) ----- */
+/* Circular avatars distinguish advisors from core staff at a glance. */
+.team-grid--advisors .team-avatar {
+  border-radius: 50%;
+  width: 116px; height: 116px;
+  aspect-ratio: auto;
+  margin-left: auto; margin-right: auto;
+  font-size: 2rem;
+}
+.team-grid--advisors .team-card { text-align: center; }
+.team-grid--advisors .bio-toggle { margin-left: auto; margin-right: auto; }
+.team-grid--advisors .team-socials { justify-content: center; }
+
 /* ========== CONTACT PAGE ========== */
 .contact-layout {
   max-width: var(--max-w);
@@ -1580,4 +1593,87 @@ textarea.form-control { resize: vertical; min-height: 140px; line-height: 1.6; }
   .pillars-section { margin-top: -2rem; }
   .featured-report { padding: 2rem; }
   .team-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* ========== WAITING-LIST MODAL ========== */
+.waitlist-modal {
+  display: none;
+  position: fixed; inset: 0; z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.waitlist-modal.open { display: flex; }
+.waitlist-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(6,13,26,.62);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  animation: wl-fade .25s var(--ease, ease);
+}
+.waitlist-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: var(--c-white);
+  border-radius: var(--r-lg);
+  padding: 2.25rem 2rem 2rem;
+  box-shadow: 0 24px 60px rgba(6,13,26,.35);
+  animation: wl-rise .3s var(--ease, ease);
+}
+.waitlist-card .label { margin-bottom: .9rem; }
+.waitlist-card h3 {
+  font-family: var(--font-display);
+  color: var(--c-navy);
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 0 0 .5rem;
+}
+.waitlist-event {
+  font-weight: 600;
+  color: var(--c-navy);
+  font-size: .92rem;
+  margin: 0 0 .35rem;
+}
+.waitlist-intro {
+  color: var(--c-grey-600);
+  font-size: .9rem;
+  line-height: 1.6;
+  margin: 0 0 1.4rem;
+}
+.waitlist-form { display: flex; gap: .65rem; }
+.waitlist-form input {
+  flex: 1;
+  min-width: 0;
+  padding: .8rem 1.1rem;
+  background: #fff;
+  border: 1px solid var(--c-grey-200);
+  border-radius: var(--r);
+  color: var(--c-navy);
+  font-family: var(--font-body);
+  font-size: .92rem;
+  outline: none;
+  transition: var(--t);
+}
+.waitlist-form input:focus { border-color: var(--c-teal); box-shadow: 0 0 0 3px var(--c-teal-100); }
+.waitlist-form .btn { white-space: nowrap; }
+.waitlist-close {
+  position: absolute;
+  top: .9rem; right: 1rem;
+  width: 2rem; height: 2rem;
+  display: flex; align-items: center; justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  color: var(--c-grey-600);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--t);
+}
+.waitlist-close:hover { background: var(--c-grey-200); color: var(--c-navy); }
+@keyframes wl-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes wl-rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 480px) {
+  .waitlist-form { flex-direction: column; }
+  .waitlist-form .btn { justify-content: center; }
 }

@@ -120,6 +120,11 @@ to avoid build costs).
   [`admin/config.yml`](admin/config.yml). Editors can manage:
   - **Site Settings** (hero title/subtitle/image, the three homepage stats)
   - **Research Papers**, **Events**, **Team Members**, **News & Commentary**
+- **Board of Advisors:** Managed inside **Team Members** (one file, two lists:
+  *Members* = core staff, *Board of Advisors* = advisers). Both appear on the
+  **Team** page — staff under "Meet the Team", advisers in a separate "Board of
+  Advisors" section below. Leave the Board of Advisors list empty and that
+  section disappears automatically. No new nav link is added for it.
 - **Where the content actually lives:** Not in a database — in plain JSON files in
   the [`data/`](data/) folder (`settings.json`, `research.json`, `events.json`,
   `team.json`, `news.json`). When an editor clicks Publish, the CMS commits the

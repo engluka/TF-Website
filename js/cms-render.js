@@ -23,6 +23,15 @@ async function loadJSON(path) {
   return res.json();
 }
 
+// Escape a string for safe use inside a double-quoted HTML attribute.
+function escapeAttr(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
 // ---- Research Page ----
 async function renderResearch() {
   const featuredEl = document.getElementById('featured-report');
@@ -89,6 +98,25 @@ function initResearchFilter() {
 }
 
 // ---- Events Page ----
+// Parse a "YYYY-MM-DD" sort date into a local-midnight Date (null if missing/invalid).
+function parseEventDate(s) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(s || '');
+  return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+}
+
+// An event is "past" once it has fully concluded — strictly before today.
+// Multi-day events use end_date if present, otherwise the start date.
+function eventHasPassed(ev, today) {
+  const ref = parseEventDate(ev.end_date) || parseEventDate(ev.date);
+  return ref ? ref < today : false; // no/invalid date → keep it in upcoming
+}
+
+// Sort key for chronological ordering; undated events sort to the end.
+function eventDateKey(ev) {
+  const d = parseEventDate(ev.date);
+  return d ? d.getTime() : Number.POSITIVE_INFINITY;
+}
+
 async function renderEvents() {
   const upcomingEl = document.getElementById('events-upcoming');
   const pastEl = document.getElementById('events-past');
@@ -96,9 +124,34 @@ async function renderEvents() {
 
   const data = await loadJSON('data/events.json');
 
+  // Reclassify at render time: any "upcoming" event whose date has passed moves
+  // into the past list, so the page stays current without editing the JSON.
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const allUpcoming = Array.isArray(data.upcoming) ? data.upcoming : [];
+  const stillUpcoming = allUpcoming
+    .filter(ev => !eventHasPassed(ev, today))
+    .sort((a, b) => eventDateKey(a) - eventDateKey(b)); // soonest first
+  const justPassed = allUpcoming
+    .filter(ev => eventHasPassed(ev, today))
+    .sort((a, b) => eventDateKey(b) - eventDateKey(a)); // most recent first
+
+  // Freshly-passed events are the most recent, so they lead the past list.
+  const pastEvents = justPassed.concat(Array.isArray(data.past) ? data.past : []);
+
   if (upcomingEl) {
-    upcomingEl.innerHTML = data.upcoming.map(ev => {
+    upcomingEl.innerHTML = stillUpcoming.map(ev => {
       const isOnline = /online|zoom/i.test(ev.location);
+      const btnClass = `btn ${ev.registration_style || 'btn-ghost'}`;
+      const btnStyle = 'padding:.65rem 1.5rem;font-size:.82rem';
+      let regBtn = '';
+      if (ev.registration_action === 'waitlist') {
+        // Opens the in-page waiting-list sign-up modal (wired up below)
+        regBtn = `<button type="button" class="${btnClass} js-waitlist-open" data-event-title="${escapeAttr(ev.title)}" style="${btnStyle}">${ev.registration_label || 'Join Waiting List'}</button>`;
+      } else if (ev.registration_url && ev.registration_url !== '#') {
+        regBtn = `<a href="${ev.registration_url}" class="${btnClass}" style="${btnStyle}">${ev.registration_label || 'Register'}</a>`;
+      }
       return `
         <div class="event-item">
           <div class="event-date-box">
@@ -113,14 +166,16 @@ async function renderEvents() {
               <div class="event-meta-item">${isOnline ? ICON_SCREEN : ICON_PIN} ${ev.location}</div>
             </div>
             <p>${ev.description}</p>
-            ${ev.registration_url ? `<div style="margin-top:1rem"><a href="${ev.registration_url}" class="btn ${ev.registration_style || 'btn-ghost'}" style="padding:.65rem 1.5rem;font-size:.82rem">${ev.registration_label || 'Register'}</a></div>` : ''}
+            ${regBtn ? `<div style="margin-top:1rem">${regBtn}</div>` : ''}
           </div>
         </div>`;
     }).join('');
+
+    initWaitlist(upcomingEl);
   }
 
   if (pastEl) {
-    pastEl.innerHTML = data.past.map(ev => `
+    pastEl.innerHTML = pastEvents.map(ev => `
       <div class="past-event-item">
         <h6>${ev.title}</h6>
         <span>${ev.date_display} · ${ev.location}</span>
@@ -128,44 +183,153 @@ async function renderEvents() {
   }
 }
 
+// ---- Waiting-list sign-up modal ----
+// Injects a single shared modal and wires up every "Join Waiting List" button.
+// Submitting registers the email on the dedicated Brevo waiting-list via the
+// existing /subscribe function (type: 'waitlist'), mirroring the newsletter UX.
+function initWaitlist(scopeEl) {
+  const triggers = scopeEl.querySelectorAll('.js-waitlist-open');
+  if (!triggers.length) return;
+
+  // Build the modal once
+  let modal = document.getElementById('waitlist-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'waitlist-modal';
+    modal.className = 'waitlist-modal';
+    modal.setAttribute('aria-hidden', 'true');
+    modal.innerHTML = `
+      <div class="waitlist-backdrop" data-wl-close></div>
+      <div class="waitlist-card" role="dialog" aria-modal="true" aria-labelledby="waitlist-title">
+        <button type="button" class="waitlist-close" data-wl-close aria-label="Close">&#x2715;</button>
+        <div class="label">Waiting List</div>
+        <h3 id="waitlist-title">Join the waiting list</h3>
+        <p class="waitlist-event"></p>
+        <p class="waitlist-intro">Add your email and we'll let you know as soon as registration opens.</p>
+        <form class="waitlist-form">
+          <input type="email" name="email" placeholder="Your email address" required aria-label="Email address">
+          <button type="submit" class="btn btn-primary">Join</button>
+        </form>
+      </div>`;
+    document.body.appendChild(modal);
+  }
+
+  const card     = modal.querySelector('.waitlist-card');
+  const eventEl  = modal.querySelector('.waitlist-event');
+  const form     = modal.querySelector('.waitlist-form');
+  const input    = form.querySelector('input[type="email"]');
+  const submitBtn = form.querySelector('button[type="submit"]');
+  let lastTrigger = null;
+  let currentEvent = '';
+
+  const open = (trigger) => {
+    lastTrigger = trigger;
+    currentEvent = trigger.dataset.eventTitle || '';
+    eventEl.textContent = currentEvent;
+    // Reset form state each time it opens
+    form.style.display = '';
+    input.value = '';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Join';
+    submitBtn.style.background = '';
+    submitBtn.style.borderColor = '';
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => input.focus(), 50);
+  };
+
+  const close = () => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastTrigger) lastTrigger.focus();
+  };
+
+  triggers.forEach(t => t.addEventListener('click', () => open(t)));
+  modal.querySelectorAll('[data-wl-close]').forEach(el => el.addEventListener('click', close));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) close();
+  });
+  // Don't let clicks inside the card bubble to the backdrop
+  card.addEventListener('click', e => e.stopPropagation());
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = input.value.trim();
+    if (!email) return;
+
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Joining…';
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch('/.netlify/functions/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, type: 'waitlist', eventTitle: currentEvent })
+      });
+
+      if (res.ok || res.status === 204) {
+        let alreadySubscribed = false;
+        try { ({ alreadySubscribed } = await res.json()); } catch { /* no JSON body */ }
+
+        submitBtn.textContent = alreadySubscribed ? 'Already on the list' : "You're on the list!";
+        submitBtn.style.background = '#059669';
+        submitBtn.style.borderColor = '#059669';
+        input.value = '';
+        setTimeout(close, 1800);
+      } else {
+        throw new Error();
+      }
+    } catch {
+      submitBtn.textContent = 'Try again';
+      submitBtn.disabled = false;
+      setTimeout(() => { submitBtn.textContent = originalText; }, 2500);
+    }
+  });
+}
+
 // ---- Team Page ----
-async function renderTeam() {
-  const gridEl = document.getElementById('team-grid');
-  if (!gridEl) return;
+// Renders one person card. Shared by the core team grid and the Board of
+// Advisors so both stay visually and behaviourally identical.
+function personCardHTML(m, i, idPrefix) {
+  const grad = AVATAR_GRADIENTS[i % AVATAR_GRADIENTS.length];
+  const socials = [
+    m.twitter_url  ? `<a href="${m.twitter_url}">Twitter</a>`  : '',
+    m.linkedin_url ? `<a href="${m.linkedin_url}">LinkedIn</a>` : '',
+    m.profile_url  ? `<a href="${m.profile_url}">${m.profile_label || 'Profile'}</a>` : ''
+  ].filter(Boolean).join(' · ');
 
-  const { members } = await loadJSON('data/team.json');
+  const avatar = m.photo
+    ? `<div class="team-avatar" style="--av-bg:${grad}"><img src="${m.photo}" alt="${m.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;z-index:1"></div>`
+    : `<div class="team-avatar" style="--av-bg:${grad}"><span>${m.initials}</span></div>`;
 
-  gridEl.innerHTML = members.map((m, i) => {
-    const grad = AVATAR_GRADIENTS[i % AVATAR_GRADIENTS.length];
-    const socials = [
-      m.twitter_url  ? `<a href="${m.twitter_url}">Twitter</a>`  : '',
-      m.linkedin_url ? `<a href="${m.linkedin_url}">LinkedIn</a>` : '',
-      m.profile_url  ? `<a href="${m.profile_url}">${m.profile_label || 'Profile'}</a>` : ''
-    ].filter(Boolean).join(' · ');
-
-    const avatar = m.photo
-      ? `<div class="team-avatar" style="--av-bg:${grad}"><img src="${m.photo}" alt="${m.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;z-index:1"></div>`
-      : `<div class="team-avatar" style="--av-bg:${grad}"><span>${m.initials}</span></div>`;
-
-    return `
-      <div class="team-card">
-        ${avatar}
-        <h4>${m.name}</h4>
-        <div class="team-role">${m.role}</div>
-        <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="team-bio-${i}">
+  // The expandable bio/socials block only appears when there's something to
+  // show, so an advisor listed with just a name and affiliation stays clean.
+  const bioId = `${idPrefix}-bio-${i}`;
+  const detail = (m.bio || socials) ? `
+        <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="${bioId}">
           <span class="bio-toggle-ic" aria-hidden="true"></span>
           <span class="bio-toggle-label">Read bio</span>
         </button>
-        <div class="team-bio-wrap" id="team-bio-${i}">
+        <div class="team-bio-wrap" id="${bioId}">
           <div class="team-bio-inner">
-            <p>${m.bio}</p>
+            ${m.bio ? `<p>${m.bio}</p>` : ''}
             ${socials ? `<div class="team-socials">${socials}</div>` : ''}
           </div>
-        </div>
-      </div>`;
-  }).join('');
+        </div>` : '';
 
-  // Toggle a card's bio open/closed (event delegation across the grid)
+  return `
+      <div class="team-card">
+        ${avatar}
+        <h4>${m.name}</h4>
+        <div class="team-role">${m.role}</div>${detail}
+      </div>`;
+}
+
+// Toggle a card's bio open/closed (event delegation across a grid).
+function wireBioToggles(gridEl) {
   gridEl.addEventListener('click', e => {
     const btn = e.target.closest('.bio-toggle');
     if (!btn) return;
@@ -175,6 +339,28 @@ async function renderTeam() {
     const label = btn.querySelector('.bio-toggle-label');
     if (label) label.textContent = open ? 'Hide bio' : 'Read bio';
   });
+}
+
+async function renderTeam() {
+  const gridEl = document.getElementById('team-grid');
+  if (!gridEl) return;
+
+  const data = await loadJSON('data/team.json');
+  const members = Array.isArray(data.members) ? data.members : [];
+
+  gridEl.innerHTML = members.map((m, i) => personCardHTML(m, i, 'team')).join('');
+  wireBioToggles(gridEl);
+
+  // Board of Advisors — same card style, separate list. The section is hidden
+  // in the markup and only revealed once there are advisors to show.
+  const advisorsGrid = document.getElementById('advisors-grid');
+  const advisorsSection = document.getElementById('advisors');
+  const advisors = Array.isArray(data.advisors) ? data.advisors : [];
+  if (advisorsGrid && advisors.length) {
+    advisorsGrid.innerHTML = advisors.map((a, i) => personCardHTML(a, i, 'advisor')).join('');
+    wireBioToggles(advisorsGrid);
+    if (advisorsSection) advisorsSection.style.display = '';
+  }
 }
 
 // ---- Site Settings ----

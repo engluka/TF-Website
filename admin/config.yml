@@ -72,11 +72,21 @@ collections:
                 widget: select
                 options: [Annual Conference, Webinar, Policy Roundtable, Public Lecture, Workshop, Symposium]
               - { label: Date (for sorting), name: date,        widget: date, format: YYYY-MM-DD }
+              - { label: End Date (optional, for multi-day events), name: end_date, widget: date, format: YYYY-MM-DD, required: false, hint: "Set for multi-day events so they stay in 'Upcoming' until the last day. Leave blank for single-day events." }
               - { label: Date Display,       name: date_display, widget: string, hint: "e.g. 14–15 June 2025" }
               - { label: Day number,         name: day,          widget: string, hint: "e.g. 14" }
               - { label: Month abbreviation, name: month,        widget: string, hint: "e.g. Jun" }
               - { label: Location,           name: location,     widget: string }
               - { label: Description,        name: description,  widget: text }
+              - label: Button Action
+                name: registration_action
+                widget: select
+                options:
+                  - { label: 'External link', value: link }
+                  - { label: 'Join waiting list (in-page form)', value: waitlist }
+                default: link
+                required: false
+                hint: "Pick 'Join waiting list' to open the email sign-up form instead of linking out."
               - { label: Registration URL,   name: registration_url,   widget: string, required: false }
               - { label: Registration Button Label, name: registration_label, widget: string, required: false }
               - label: Button Style
@@ -110,6 +120,21 @@ collections:
               - { label: Role / Title,        name: role,         widget: string }
               - { label: Bio,                 name: bio,          widget: text }
               - { label: Twitter URL,         name: twitter_url,  widget: string, required: false }
+              - { label: LinkedIn URL,        name: linkedin_url, widget: string, required: false }
+              - { label: Profile URL,         name: profile_url,  widget: string, required: false }
+              - { label: Profile Link Label,  name: profile_label, widget: string, required: false }
+          - name: advisors
+            label: Board of Advisors
+            label_singular: Advisor
+            widget: list
+            required: false
+            hint: "Shown in a separate 'Board of Advisors' section below the team. Leave empty to hide that section entirely."
+            fields:
+              - { label: Name,               name: name,          widget: string }
+              - { label: Initials (2 letters), name: initials,   widget: string }
+              - { label: Photo,               name: photo,        widget: image, required: false, hint: "Optional. If left blank, initials are shown instead." }
+              - { label: Role / Affiliation, name: role,         widget: string, hint: "e.g. Professor of Urban Planning · University of Cape Town" }
+              - { label: Bio,                 name: bio,          widget: text,   required: false }
               - { label: LinkedIn URL,        name: linkedin_url, widget: string, required: false }
               - { label: Profile URL,         name: profile_url,  widget: string, required: false }
               - { label: Profile Link Label,  name: profile_label, widget: string, required: false }
