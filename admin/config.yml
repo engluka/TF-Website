@@ -2,8 +2,9 @@ backend:
   name: git-gateway
   branch: main
 
-publish_mode: editorial_workflow
-
+# Editorial workflow is intentionally OFF: CMS saves commit straight to the
+# `main` branch (simple mode), so a published edit is on `main` immediately —
+# no draft-PR/Publish step to wait on before `git pull` + deploy.
 media_folder: images/uploads
 public_folder: /images/uploads
 
