@@ -96,5 +96,28 @@
       "initials": "DA",
       "photo": "/images/uploads/dagim_bw.jpg"
     }
+  ],
+  "advisors": [
+    {
+      "name": "Advisor Name",
+      "initials": "AN",
+      "role": "Title · Institution",
+      "bio": "PLACEHOLDER — replace or remove this entry in the CMS under Team Members → Board of Advisors. A short note on this advisor's background and the expertise they bring to Transport Futures.",
+      "linkedin_url": ""
+    },
+    {
+      "name": "Advisor Name",
+      "initials": "AN",
+      "role": "Title · Institution",
+      "bio": "PLACEHOLDER — replace or remove this entry in the CMS under Team Members → Board of Advisors.",
+      "linkedin_url": ""
+    },
+    {
+      "name": "Advisor Name",
+      "initials": "AN",
+      "role": "Title · Institution",
+      "bio": "PLACEHOLDER — replace or remove this entry in the CMS under Team Members → Board of Advisors.",
+      "linkedin_url": ""
+    }
   ]
 }

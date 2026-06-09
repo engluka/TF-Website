@@ -123,6 +123,21 @@ collections:
               - { label: LinkedIn URL,        name: linkedin_url, widget: string, required: false }
               - { label: Profile URL,         name: profile_url,  widget: string, required: false }
               - { label: Profile Link Label,  name: profile_label, widget: string, required: false }
+          - name: advisors
+            label: Board of Advisors
+            label_singular: Advisor
+            widget: list
+            required: false
+            hint: "Shown in a separate 'Board of Advisors' section below the team. Leave empty to hide that section entirely."
+            fields:
+              - { label: Name,               name: name,          widget: string }
+              - { label: Initials (2 letters), name: initials,   widget: string }
+              - { label: Photo,               name: photo,        widget: image, required: false, hint: "Optional. If left blank, initials are shown instead." }
+              - { label: Role / Affiliation, name: role,         widget: string, hint: "e.g. Professor of Urban Planning · University of Cape Town" }
+              - { label: Bio,                 name: bio,          widget: text,   required: false }
+              - { label: LinkedIn URL,        name: linkedin_url, widget: string, required: false }
+              - { label: Profile URL,         name: profile_url,  widget: string, required: false }
+              - { label: Profile Link Label,  name: profile_label, widget: string, required: false }
 
   - name: news
     label: News & Commentary

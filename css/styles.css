@@ -1244,6 +1244,19 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
 .team-bio-inner { overflow: hidden; }
 .team-bio-inner p { margin: .9rem 0 0; }
 
+/* ----- Board of Advisors (compact variant of the team grid) ----- */
+/* Circular avatars distinguish advisors from core staff at a glance. */
+.team-grid--advisors .team-avatar {
+  border-radius: 50%;
+  width: 116px; height: 116px;
+  aspect-ratio: auto;
+  margin-left: auto; margin-right: auto;
+  font-size: 2rem;
+}
+.team-grid--advisors .team-card { text-align: center; }
+.team-grid--advisors .bio-toggle { margin-left: auto; margin-right: auto; }
+.team-grid--advisors .team-socials { justify-content: center; }
+
 /* ========== CONTACT PAGE ========== */
 .contact-layout {
   max-width: var(--max-w);

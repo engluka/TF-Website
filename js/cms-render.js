@@ -291,43 +291,45 @@ function initWaitlist(scopeEl) {
 }
 
 // ---- Team Page ----
-async function renderTeam() {
-  const gridEl = document.getElementById('team-grid');
-  if (!gridEl) return;
+// Renders one person card. Shared by the core team grid and the Board of
+// Advisors so both stay visually and behaviourally identical.
+function personCardHTML(m, i, idPrefix) {
+  const grad = AVATAR_GRADIENTS[i % AVATAR_GRADIENTS.length];
+  const socials = [
+    m.twitter_url  ? `<a href="${m.twitter_url}">Twitter</a>`  : '',
+    m.linkedin_url ? `<a href="${m.linkedin_url}">LinkedIn</a>` : '',
+    m.profile_url  ? `<a href="${m.profile_url}">${m.profile_label || 'Profile'}</a>` : ''
+  ].filter(Boolean).join(' · ');
 
-  const { members } = await loadJSON('data/team.json');
+  const avatar = m.photo
+    ? `<div class="team-avatar" style="--av-bg:${grad}"><img src="${m.photo}" alt="${m.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;z-index:1"></div>`
+    : `<div class="team-avatar" style="--av-bg:${grad}"><span>${m.initials}</span></div>`;
 
-  gridEl.innerHTML = members.map((m, i) => {
-    const grad = AVATAR_GRADIENTS[i % AVATAR_GRADIENTS.length];
-    const socials = [
-      m.twitter_url  ? `<a href="${m.twitter_url}">Twitter</a>`  : '',
-      m.linkedin_url ? `<a href="${m.linkedin_url}">LinkedIn</a>` : '',
-      m.profile_url  ? `<a href="${m.profile_url}">${m.profile_label || 'Profile'}</a>` : ''
-    ].filter(Boolean).join(' · ');
-
-    const avatar = m.photo
-      ? `<div class="team-avatar" style="--av-bg:${grad}"><img src="${m.photo}" alt="${m.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;z-index:1"></div>`
-      : `<div class="team-avatar" style="--av-bg:${grad}"><span>${m.initials}</span></div>`;
-
-    return `
-      <div class="team-card">
-        ${avatar}
-        <h4>${m.name}</h4>
-        <div class="team-role">${m.role}</div>
-        <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="team-bio-${i}">
+  // The expandable bio/socials block only appears when there's something to
+  // show, so an advisor listed with just a name and affiliation stays clean.
+  const bioId = `${idPrefix}-bio-${i}`;
+  const detail = (m.bio || socials) ? `
+        <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="${bioId}">
           <span class="bio-toggle-ic" aria-hidden="true"></span>
           <span class="bio-toggle-label">Read bio</span>
         </button>
-        <div class="team-bio-wrap" id="team-bio-${i}">
+        <div class="team-bio-wrap" id="${bioId}">
           <div class="team-bio-inner">
-            <p>${m.bio}</p>
+            ${m.bio ? `<p>${m.bio}</p>` : ''}
             ${socials ? `<div class="team-socials">${socials}</div>` : ''}
           </div>
-        </div>
-      </div>`;
-  }).join('');
+        </div>` : '';
 
-  // Toggle a card's bio open/closed (event delegation across the grid)
+  return `
+      <div class="team-card">
+        ${avatar}
+        <h4>${m.name}</h4>
+        <div class="team-role">${m.role}</div>${detail}
+      </div>`;
+}
+
+// Toggle a card's bio open/closed (event delegation across a grid).
+function wireBioToggles(gridEl) {
   gridEl.addEventListener('click', e => {
     const btn = e.target.closest('.bio-toggle');
     if (!btn) return;
@@ -337,6 +339,28 @@ async function renderTeam() {
     const label = btn.querySelector('.bio-toggle-label');
     if (label) label.textContent = open ? 'Hide bio' : 'Read bio';
   });
+}
+
+async function renderTeam() {
+  const gridEl = document.getElementById('team-grid');
+  if (!gridEl) return;
+
+  const data = await loadJSON('data/team.json');
+  const members = Array.isArray(data.members) ? data.members : [];
+
+  gridEl.innerHTML = members.map((m, i) => personCardHTML(m, i, 'team')).join('');
+  wireBioToggles(gridEl);
+
+  // Board of Advisors — same card style, separate list. The section is hidden
+  // in the markup and only revealed once there are advisors to show.
+  const advisorsGrid = document.getElementById('advisors-grid');
+  const advisorsSection = document.getElementById('advisors');
+  const advisors = Array.isArray(data.advisors) ? data.advisors : [];
+  if (advisorsGrid && advisors.length) {
+    advisorsGrid.innerHTML = advisors.map((a, i) => personCardHTML(a, i, 'advisor')).join('');
+    wireBioToggles(advisorsGrid);
+    if (advisorsSection) advisorsSection.style.display = '';
+  }
 }
 
 // ---- Site Settings ----
