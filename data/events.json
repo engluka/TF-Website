@@ -18,9 +18,9 @@
       "registration_url": "https://www.ictct.net/afrosafe-conference/2026-zambia/",
       "registration_style": "btn-ghost",
       "date": "2026-06-08",
-      "end_date": "2026-06-12",
       "registration_label": "",
       "date_display": "08-12 June 2026",
+      "end_date": "2026-06-12",
       "location": "Lusaka, Zambia",
       "title": "Building sustainable road safety systems for Africa: from data to implementation and ownership",
       "type": "Annual Conference",
@@ -32,9 +32,9 @@
       "registration_url": "",
       "registration_style": "btn-ghost",
       "date": "2026-09-28",
-      "end_date": "2026-09-30",
       "registration_label": "",
       "date_display": "September 28–30, 2026",
+      "end_date": "2026-09-30",
       "location": "Cape Town, South Africa",
       "title": "Africa E-Mobility Week",
       "type": "Policy Roundtable",
@@ -44,7 +44,6 @@
     {
       "month": "Sep",
       "registration_url": "",
-      "registration_action": "waitlist",
       "registration_style": "btn-ghost",
       "date": "2026-09-10",
       "registration_label": "Join Waiting List",
@@ -55,6 +54,19 @@
       "registration_action": "waitlist",
       "day": "10",
       "description": "Dr. Anteneh will be speaking on planning for informality — why Africa's cities need new frameworks, not borrowed ones."
+    },
+    {
+      "month": "Sep",
+      "registration_url": "https://www.africaevsummit.com/tickets",
+      "registration_style": "btn-ghost",
+      "registration_label": "Buy Ticket",
+      "date_display": "14-16 September 2026",
+      "location": "Addis Ababa",
+      "title": "Nordic-Africa EV Summit",
+      "type": "Policy Roundtable",
+      "registration_action": "link",
+      "day": "14",
+      "description": "The Nordic-Africa EV Summit is a working platform connecting Africa’s electric mobility transition with Nordic leadership in transport, energy systems, and battery energy storage. Through twin-city convenings in the Nordics and Africa, the Summit brings together governments, utilities, fleet operators, financiers, and technology providers to move electric mobility from pilots to scalable deployment. With a focus on trade corridors, public transport, fleet electrification, and storage-backed charging infrastructure, the Summit aligns policy, investment, and real-world implementation to enable reliable, low-carbon transport systems even where grids are constrained."
     }
   ],
   "past": [
