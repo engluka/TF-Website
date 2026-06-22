@@ -29,10 +29,10 @@
     },
     {
       "month": "Sep",
-      "registration_url": "",
+      "registration_url": "https://africaemobilityweek.org/",
       "registration_style": "btn-ghost",
       "date": "2026-09-28",
-      "registration_label": "",
+      "registration_label": "Read More",
       "date_display": "September 28–30, 2026",
       "end_date": "2026-09-30",
       "location": "Cape Town, South Africa",
