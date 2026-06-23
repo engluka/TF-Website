@@ -106,18 +106,18 @@
       "initials": "CH"
     },
     {
-      "name": "Chris Kost ",
-      "initials": "CK",
-      "linkedin_url": "https://et.linkedin.com/in/chris-kost",
-      "role": "Independent Consultant ",
-      "photo": "/images/uploads/chris.jpg"
-    },
-    {
       "name": "Gladys Nyachieo",
       "initials": "GN",
       "photo": "/images/uploads/galdys.jpg",
       "role": "Multi Media University Kenya",
       "linkedin_url": "https://www.linkedin.com/in/gladys-moraa-nyachieo-09232842/"
+    },
+    {
+      "name": "Chris Kost ",
+      "initials": "CK",
+      "linkedin_url": "https://et.linkedin.com/in/chris-kost",
+      "role": "Independent Consultant ",
+      "photo": "/images/uploads/chris.jpg"
     }
   ]
 }
