@@ -10,7 +10,10 @@
       "mcp__claude_ai_Netlify__netlify-project-services-reader",
       "mcp__claude_ai_Netlify__netlify-user-services-reader",
       "mcp__claude_ai_Netlify__netlify-deploy-services-updater",
-      "PowerShell(git -C \"c:\\\\Users\\\\aammekonnen\\\\OneDrive\\\\Products\\\\TF Website\" status --short)"
+      "PowerShell(git -C \"c:\\\\Users\\\\aammekonnen\\\\OneDrive\\\\Products\\\\TF Website\" status --short)",
+      "PowerShell(netlify deploy --prod)",
+      "PowerShell(Start-Process \"c:\\\\Users\\\\aammekonnen\\\\OneDrive\\\\Products\\\\TF Website\\\\brand\\\\letterhead.html\")",
+      "PowerShell(\"opened\")"
     ]
   }
 }

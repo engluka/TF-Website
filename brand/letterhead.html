@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transport Futures — Letterhead Template</title>
+
+<!-- Brand fonts: Space Grotesk (signature / display) + Manrope (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* =======================================================
+     TRANSPORT FUTURES — OFFICIAL LETTERHEAD
+     A4 (210 × 297 mm) · print-ready
+     Brand colours:  Navy #0A1628  ·  Teal #00C4CC
+     Brand type:     Space Grotesk (signature)  ·  Manrope (body)
+     ======================================================= */
+
+  :root{
+    --navy:    #0A1628;
+    --navy-600:#1a3a5c;
+    --teal:    #00C4CC;
+    --teal-700:#009AA0;
+    --ink:     #0e1c33;
+    --grey:    #4E617F;
+    --grey-li: #8E9BB5;
+    --line:    #E8ECF3;
+    --display: 'Space Grotesk', Arial, sans-serif;
+    --body:    'Manrope', Arial, sans-serif;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  /* Screen preview only — never printed */
+  body{
+    background:#d8dde6;
+    font-family:var(--body);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    padding:24px 0;
+  }
+
+  .page{
+    position:relative;
+    width:210mm;
+    min-height:297mm;
+    margin:0 auto;
+    background:#fff;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 12px 48px rgba(10,22,40,.22);   /* screen only */
+    overflow:hidden;
+  }
+
+  /* Thin teal spine echoing the blocky TF mark */
+  .page::before{
+    content:'';
+    position:absolute;
+    top:0; left:0;
+    width:6mm; height:100%;
+    background:linear-gradient(180deg,var(--teal) 0%, var(--teal-700) 100%);
+  }
+
+  /* ---------- HEADER ---------- */
+  .lh-header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    padding:18mm 18mm 0 24mm;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand img{ width:46px; height:auto; display:block; }
+  .brand .wordmark{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:21px;
+    line-height:.98;
+    letter-spacing:-.01em;
+    color:var(--navy);
+  }
+  .brand .tagline{
+    margin-top:6px;
+    font-family:var(--display);
+    font-size:7.5px;
+    font-weight:600;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--teal-700);
+  }
+
+  .contact-head{
+    text-align:right;
+    font-size:9px;
+    line-height:1.7;
+    color:var(--grey);
+    padding-left:14px;
+    border-left:1px solid var(--line);
+  }
+  .contact-head strong{ color:var(--navy); font-weight:600; }
+  .contact-head a{ color:var(--teal-700); text-decoration:none; }
+
+  /* Full-width teal hairline under the header */
+  .lh-rule{
+    margin:14mm 18mm 0 24mm;
+    height:2px;
+    background:linear-gradient(90deg,var(--teal) 0%, var(--teal) 38%, var(--line) 38%, var(--line) 100%);
+  }
+
+  /* ---------- BODY ---------- */
+  .lh-body{
+    flex:1;
+    padding:12mm 18mm 10mm 24mm;
+    font-size:11pt;
+    line-height:1.75;
+    color:var(--ink);
+  }
+  .lh-meta{
+    display:flex;
+    justify-content:space-between;
+    font-size:9.5pt;
+    color:var(--grey-li);
+    margin-bottom:9mm;
+  }
+  .lh-meta .ref{ font-family:var(--display); letter-spacing:.04em; }
+
+  .recipient{ margin-bottom:8mm; line-height:1.5; }
+  .recipient .name{ font-weight:600; color:var(--navy); }
+
+  .subject{
+    font-family:var(--display);
+    font-weight:600;
+    color:var(--navy);
+    margin-bottom:6mm;
+  }
+  .salutation{ margin-bottom:4mm; }
+  .lh-body p{ margin-bottom:4mm; }
+
+  .signoff{ margin-top:8mm; }
+  .signoff .closing{ margin-bottom:16mm; }   /* space for a wet/scanned signature */
+  .signoff .name{ font-weight:600; color:var(--navy); }
+  .signoff .role{ font-size:9.5pt; color:var(--grey); }
+
+  /* ---------- FOOTER ---------- */
+  .lh-footer{
+    background:var(--navy);
+    color:#cfd8e6;
+    padding:7mm 18mm 7mm 24mm;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:18px;
+    font-size:8pt;
+    line-height:1.6;
+  }
+  .lh-footer .mark-row{ display:flex; align-items:center; gap:9px; margin-bottom:5px; }
+  .lh-footer .mark-row img{ width:22px; height:auto; }
+  .lh-footer .mark-row span{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:11px;
+    color:#fff;
+    letter-spacing:-.01em;
+  }
+  .lh-footer .reg{ color:var(--grey-li); }
+  .lh-footer .meta-right{ text-align:right; }
+  .lh-footer a{ color:var(--teal); text-decoration:none; }
+  .lh-footer .divider{ color:var(--teal-700); padding:0 5px; }
+
+  /* ---------- PRINT ---------- */
+  @page{ size:A4; margin:0; }
+  @media print{
+    body{ background:#fff; padding:0; }
+    .page{ box-shadow:none; margin:0; width:auto; min-height:auto; }
+    .screen-hint{ display:none !important; }
+  }
+
+  .screen-hint{
+    max-width:210mm;
+    margin:0 auto 14px;
+    font-family:var(--display);
+    font-size:11px;
+    color:#5b6b85;
+    letter-spacing:.02em;
+  }
+  .screen-hint b{ color:#0A1628; }
+</style>
+</head>
+<body>
+
+  <div class="screen-hint">
+    📄 <b>Transport Futures letterhead.</b> Replace the bracketed [ … ] placeholders with your content, then print to PDF
+    (Ctrl/Cmd&nbsp;+&nbsp;P → “Save as PDF”, A4, margins “None”, background graphics ON). This hint does not print.
+  </div>
+
+  <div class="page">
+
+    <!-- ============ HEADER ============ -->
+    <header class="lh-header">
+      <div class="brand">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHIAAABpCAYAAADmzHclAAADtklEQVR4nO3dSWsTcRjH8SeT1C5Jm+5rurdJs3RfkjbFKoIIBRFEEEUQQZBCKRRKQQRBBBEEEUQoiOndN6AHLz148DVY724Xe7GHzF8ythJLrWma2Z7n94WBZKZpOnz4J7MlJUIIIYQQQgghhBBCCNmYp9Af3N7ZUQtv3pGT20hN02Jnx5HrdG3rvdr6/IWc2mxTI70+M1+wy36aOX8OsjpAMgmQTAIkkwDJJEAyCZBMAiSTAMkkQDIJkEwCJJMAySRAMgmQTAIkkwDJJEAyCZBMAiSTAMkkQDIJkEwCJJMAySRAMgmQTAIkkwDJJEAyCZBMAiSTAMkkQDIJkBK/Q+D7z11yejNNjUeu04ev3xS5fB0QQgghhBBCyMbE7a9s/9hRC2///k49r8dDvtykab9va7n7mjHPqx1YlpuXd//PPG3/9t78vfv5j8mftLzl+dNUQz3NtzQf28VHwtIPmZdVyph29cOWWtdSZLAoRJGQSjnzwM7yUJjWh2NFv0KKg9TJeZAr0QitJaInepsTB6kc5rgaG6LV+NCJt1XEQeoOklyLR2klFinJBqc8SHJG64koLUdLgygTUtk/Iu8Ox2hpKFzSXT9xkMpmyHsjcboTGSz5/rs4SN3G574/mqDb4QFTDsLIg1T2jMgHY8N0a7DftCNpAiHJ8h6Oj9DNgT5TD4fKgyRrJR9NjNKN/l7Tj2nLg1TWQT6eHKPrfT2WnJgQCEmW9GRqnK72dlt2dkkgpDL9OZ5OT9CVni5LTxHKgyRzIZ/NTNLl7k7Lz/PKg1TmQT5PTtKlLusRhUKSKb1ITdHFzpBtV1wIhFQl/50bs9O0GDr63x2anTxIKi3ky7kZutDRbvu1T+IgsyUcka/SSTrf3mY7okhIvQSOmsdDmbkknWtvdQSiUEh1osfnLpXMzKXobFuLYxBzAfIYlXs1A/F0a3GXLJqZOMhskSOy0uulzXSK0i1NjkMUCakXARnw+SiTTtFss3M/SSwOMnvM3Y9gWRll0knHfxxcHKR+DMe6U6cMxKnGBkcjioTMFvjS2lhebiCON9Q7HlEkpF4AZHNFBW2mkzRSX+cKRJGQ2f9AtlVWGiMxUVfrGkSRkPoRkKGqKgMxWht0FaJIyOw/ILv8fgMxEqxxHWIuQBJRbyCHmKKBmmpXIoqE1A+MyP7qgHHEprc64FpEkv7SGq6pNkZid8DvakTRkNFgjYEY8le5HlEsZLw2aGzYtFfxQBTZ5sdP9n9AEiGEEEIIIYQQQggh2u8XkHPHqiHjsVIAAAAASUVORK5CYII=" alt="Transport Futures">
+        <div>
+          <div class="wordmark">Transport&nbsp;Futures</div>
+          <div class="tagline">Independent Transport Policy Think Tank</div>
+        </div>
+      </div>
+
+      <div class="contact-head">
+        <strong>Transport Futures</strong><br>
+        Westlands Business Park, Suite 4B<br>
+        Nairobi 00800, Kenya<br>
+        <a href="mailto:info@transportfutures.org">info@transportfutures.org</a> · +254&nbsp;(0)20&nbsp;765&nbsp;4300
+      </div>
+    </header>
+
+    <div class="lh-rule"></div>
+
+    <!-- ============ BODY (edit everything below) ============ -->
+    <main class="lh-body">
+
+      <div class="lh-meta">
+        <span class="ref">REF: TF/[YYYY]/[000]</span>
+        <span>[Day Month Year]</span>
+      </div>
+
+      <div class="recipient">
+        <span class="name">[Recipient name]</span><br>
+        [Title / Organisation]<br>
+        [Address line 1]<br>
+        [City, Country]
+      </div>
+
+      <div class="subject">Re: [Subject of letter]</div>
+
+      <div class="salutation">Dear [Name],</div>
+
+      <p>[Opening paragraph — state the purpose of the letter in a single clear sentence,
+        then set the context.]</p>
+
+      <p>[Body paragraph — provide the detail, evidence, or request. Keep to plain,
+        evidence-led language consistent with Transport Futures’ voice.]</p>
+
+      <p>[Closing paragraph — summarise the action required and any next steps, with a
+        point of contact.]</p>
+
+      <div class="signoff">
+        <div class="closing">Yours sincerely,</div>
+        <div class="name">[Full Name]</div>
+        <div class="role">[Job Title], Transport Futures</div>
+      </div>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="lh-footer">
+      <div>
+        <div class="mark-row">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHIAAABpCAYAAADmzHclAAADtklEQVR4nO3dSWsTcRjH8SeT1C5Jm+5rurdJs3RfkjbFKoIIBRFEEEUQQZBCKRRKQQRBBBEEEUQoiOndN6AHLz148DVY724Xe7GHzF8ythJLrWma2Z7n94WBZKZpOnz4J7MlJUIIIYQQQgghhBBCCNmYp9Af3N7ZUQtv3pGT20hN02Jnx5HrdG3rvdr6/IWc2mxTI70+M1+wy36aOX8OsjpAMgmQTAIkkwDJJEAyCZBMAiSTAMkkQDIJkEwCJJMAySRAMgmQTAIkkwDJJEAyCZBMAiSTAMkkQDIJkEwCJJMAySRAMgmQTAIkkwDJJEAyCZBMAiSTAMkkQDIJkBK/Q+D7z11yejNNjUeu04ev3xS5fB0QQgghhBBCyMbE7a9s/9hRC2///k49r8dDvtykab9va7n7mjHPqx1YlpuXd//PPG3/9t78vfv5j8mftLzl+dNUQz3NtzQf28VHwtIPmZdVyph29cOWWtdSZLAoRJGQSjnzwM7yUJjWh2NFv0KKg9TJeZAr0QitJaInepsTB6kc5rgaG6LV+NCJt1XEQeoOklyLR2klFinJBqc8SHJG64koLUdLgygTUtk/Iu8Ox2hpKFzSXT9xkMpmyHsjcboTGSz5/rs4SN3G574/mqDb4QFTDsLIg1T2jMgHY8N0a7DftCNpAiHJ8h6Oj9DNgT5TD4fKgyRrJR9NjNKN/l7Tj2nLg1TWQT6eHKPrfT2WnJgQCEmW9GRqnK72dlt2dkkgpDL9OZ5OT9CVni5LTxHKgyRzIZ/NTNLl7k7Lz/PKg1TmQT5PTtKlLusRhUKSKb1ITdHFzpBtV1wIhFQl/50bs9O0GDr63x2anTxIKi3ky7kZutDRbvu1T+IgsyUcka/SSTrf3mY7okhIvQSOmsdDmbkknWtvdQSiUEh1osfnLpXMzKXobFuLYxBzAfIYlXs1A/F0a3GXLJqZOMhskSOy0uulzXSK0i1NjkMUCakXARnw+SiTTtFss3M/SSwOMnvM3Y9gWRll0knHfxxcHKR+DMe6U6cMxKnGBkcjioTMFvjS2lhebiCON9Q7HlEkpF4AZHNFBW2mkzRSX+cKRJGQ2f9AtlVWGiMxUVfrGkSRkPoRkKGqKgMxWht0FaJIyOw/ILv8fgMxEqxxHWIuQBJRbyCHmKKBmmpXIoqE1A+MyP7qgHHEprc64FpEkv7SGq6pNkZid8DvakTRkNFgjYEY8le5HlEsZLw2aGzYtFfxQBTZ5sdP9n9AEiGEEEIIIYQQQggh2u8XkHPHqiHjsVIAAAAASUVORK5CYII=" alt="">
+          <span>Transport&nbsp;Futures</span>
+        </div>
+        <div class="reg">An independent, not-for-profit think tank registered in Nairobi, Kenya.</div>
+      </div>
+      <div class="meta-right">
+        Westlands Business Park, Suite 4B · Nairobi 00800, Kenya<br>
+        <a href="mailto:info@transportfutures.org">info@transportfutures.org</a>
+        <span class="divider">|</span>+254 (0)20 765 4300
+        <span class="divider">|</span><a href="https://transportfutures.org">transportfutures.org</a>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

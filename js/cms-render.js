@@ -468,7 +468,10 @@ async function renderHome() {
         <div class="news-item-body">
           <h4>${item.title}</h4>
           <p>${item.summary}</p>
-          <div class="news-item-date">${item.date_display}</div>
+          <div class="news-item-date">
+            <span>${item.date_display}</span>
+            ${item.url ? `<a href="${item.url}" class="news-item-link">Read More</a>` : ''}
+          </div>
         </div>
       </div>`).join('');
   }

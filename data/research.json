@@ -13,20 +13,8 @@
       "featured_cities": 28
     },
     {
-      "title": "Standard Gauge Railway Outcomes: Lessons from Kenya, Ethiopia, and Nigeria for Continental Rail Strategy",
-      "category": "rail",
-      "tag": "Rail & Corridors",
-      "date": "2025-02-01",
-      "date_display": "February 2025",
-      "summary": "A comparative assessment of SGR projects across East and West Africa, evaluating economic returns, modal shift, and the governance lessons for future continental connectivity.",
-      "pdf_url": "#",
-      "featured": false,
-      "featured_pages": null,
-      "featured_cities": null
-    },
-    {
       "title": "E-Mobility Leapfrogging: Can Africa Skip Fossil-Fuel Transit and Go Straight to Electric?",
-      "category": "autonomous",
+      "category": "emobility",
       "tag": "E-Mobility",
       "date": "2025-01-15",
       "date_display": "January 2025",
@@ -49,21 +37,9 @@
       "featured_cities": null
     },
     {
-      "title": "Single African Air Transport Market: Progress, Barriers, and the Path to Open Skies",
-      "category": "aviation",
-      "tag": "Aviation",
-      "date": "2024-12-01",
-      "date_display": "December 2024",
-      "summary": "Evaluating implementation progress of the SAATM agreement across 35 signatory states, identifying the regulatory, political, and infrastructure barriers that constrain intra-African air connectivity.",
-      "pdf_url": "#",
-      "featured": false,
-      "featured_pages": null,
-      "featured_cities": null
-    },
-    {
       "title": "Walking Cities: The Case for Pedestrian Infrastructure Investment in Sub-Saharan Africa",
-      "category": "active",
-      "tag": "Last Mile",
+      "category": "urban",
+      "tag": "Urban Mobility",
       "date": "2024-11-01",
       "date_display": "November 2024",
       "summary": "A multi-city study quantifying the economic and health value of pedestrian infrastructure across Kampala, Accra, Addis Ababa, and Lusaka — and the policy levers most effective at shifting investment priorities.",
@@ -73,24 +49,12 @@
       "featured_cities": null
     },
     {
-      "title": "Boda Boda, Okada, and Bajaj: Motorcycle Taxis and the Urban Mobility Gap in East and West Africa",
-      "category": "active",
-      "tag": "Last Mile",
+      "title": "Boda Boda, Okada, and Bajaj: Motorcycle Taxis and the Road Safety Challenge in East and West Africa",
+      "category": "safety",
+      "tag": "Road Safety",
       "date": "2024-10-01",
       "date_display": "October 2024",
-      "summary": "An evaluation of motorcycle taxi operations across eight cities, measuring their role in filling last-mile connectivity gaps and the safety, regulatory, and emissions trade-offs of formalisation.",
-      "pdf_url": "#",
-      "featured": false,
-      "featured_pages": null,
-      "featured_cities": null
-    },
-    {
-      "title": "The Lobito Corridor: Economic Integration, Freight Potential, and the Governance Imperative",
-      "category": "rail",
-      "tag": "Rail & Corridors",
-      "date": "2024-09-01",
-      "date_display": "September 2024",
-      "summary": "An assessment of the revitalised Lobito Atlantic Railway corridor, modelling freight capacity, regional economic integration potential, and the governance framework needed to maximise public benefit.",
+      "summary": "An evaluation of motorcycle taxi operations across eight cities, measuring their role in last-mile connectivity against the road-safety, regulatory, and emissions trade-offs of formalisation.",
       "pdf_url": "#",
       "featured": false,
       "featured_pages": null,
@@ -98,7 +62,7 @@
     },
     {
       "title": "Electric Two- and Three-Wheelers: Africa's Most Viable Path to Clean Urban Mobility?",
-      "category": "autonomous",
+      "category": "emobility",
       "tag": "E-Mobility",
       "date": "2024-08-01",
       "date_display": "August 2024",
