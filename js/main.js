@@ -130,24 +130,6 @@ const counterObserver = new IntersectionObserver(entries => {
 
 document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
 
-// ---- Panel bar animation ----
-const barObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('.panel-bar-fill').forEach(bar => {
-        const w = bar.dataset.width || '0%';
-        setTimeout(() => { bar.style.width = w; }, 200);
-      });
-      barObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.3 });
-
-document.querySelectorAll('.hero-panel').forEach(el => {
-  el.querySelectorAll('.panel-bar-fill').forEach(b => { b.style.width = '0'; });
-  barObserver.observe(el);
-});
-
 // ---- Research filter ----
 const filterBtns   = document.querySelectorAll('.filter-btn');
 const researchCards = document.querySelectorAll('.research-card');
