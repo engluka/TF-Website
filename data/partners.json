@@ -29,6 +29,18 @@
       "logo": "/images/partners/vref.svg",
       "url": "",
       "active": false
+    },
+    {
+      "name": "Africa E-Mobility Alliance (AfEMA)",
+      "logo": "/images/partners/afema.png",
+      "url": "https://africaema.org/",
+      "active": true
+    },
+    {
+      "name": "Multimedia University of Kenya",
+      "logo": "/images/partners/mmu.png",
+      "url": "https://www.mmu.ac.ke/",
+      "active": true
     }
   ]
 }
