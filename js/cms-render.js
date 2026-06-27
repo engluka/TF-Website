@@ -397,12 +397,6 @@ async function applySettings() {
     }
   }
 
-  // Hero subtitle
-  if (s.hero_subtitle) {
-    const desc = document.querySelector('.hero-desc');
-    if (desc) desc.textContent = s.hero_subtitle;
-  }
-
   // Stats
   const statMap = {
     '[data-count="47"]': s.stat_reports,
