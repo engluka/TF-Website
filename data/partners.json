@@ -41,6 +41,12 @@
       "logo": "/images/partners/mmu.png",
       "url": "https://www.mmu.ac.ke/",
       "active": true
+    },
+    {
+      "name": "Global Network for Popular Transportation (GNPT)",
+      "logo": "/images/partners/gnpt.png",
+      "url": "https://www.populartransport.net/",
+      "active": true
     }
   ]
 }
