@@ -13,7 +13,9 @@
       "PowerShell(git -C \"c:\\\\Users\\\\aammekonnen\\\\OneDrive\\\\Products\\\\TF Website\" status --short)",
       "PowerShell(netlify deploy --prod)",
       "PowerShell(Start-Process \"c:\\\\Users\\\\aammekonnen\\\\OneDrive\\\\Products\\\\TF Website\\\\brand\\\\letterhead.html\")",
-      "PowerShell(\"opened\")"
+      "PowerShell(\"opened\")",
+      "PowerShell(Start-Process \"http://localhost:8000/team.html\")",
+      "PowerShell(\"opened team page\")"
     ]
   }
 }

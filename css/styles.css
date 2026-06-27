@@ -1107,9 +1107,13 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
   margin-bottom: .65rem;
 }
 .team-card p { font-size: .87rem; color: var(--c-grey-600); line-height: 1.6; }
-.team-socials { margin-top: .75rem; display: flex; gap: .5rem; }
-.team-socials a { font-size: .75rem; color: var(--c-grey-400); transition: color .25s ease; }
+.team-actions { margin-top: 1rem; display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
+.team-actions .bio-toggle { margin-top: 0; }
+.team-socials { display: flex; align-items: center; gap: .65rem; }
+.team-socials a { color: var(--c-grey-400); transition: color .25s ease; display: inline-flex; align-items: center; }
 .team-socials a:hover { color: var(--c-teal); }
+.team-socials a svg { display: block; }
+.team-social-text { font-size: .75rem; }
 
 /* ----- Collapsible team bio ----- */
 .bio-toggle {
@@ -1174,7 +1178,7 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
 }
 .team-grid--advisors .team-card { text-align: center; }
 .team-grid--advisors .bio-toggle { margin-left: auto; margin-right: auto; }
-.team-grid--advisors .team-socials { justify-content: center; }
+.team-grid--advisors .team-actions { justify-content: center; }
 
 /* ========== CONTACT PAGE ========== */
 .contact-layout {

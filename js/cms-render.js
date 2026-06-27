@@ -5,6 +5,8 @@ const ARROW_DL = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><p
 const ICON_CAL = `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="12" rx="1.5"/><path d="M2 7h12M6 3V1M10 3V1"/></svg>`;
 const ICON_PIN = `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1C5.24 1 3 3.24 3 6c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5z"/><circle cx="8" cy="6" r="1.5"/></svg>`;
 const ICON_SCREEN = `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="14" height="10" rx="1.5"/><path d="M11 4V3a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v1"/></svg>`;
+const LINKEDIN_ICON = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.73v20.54C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .78 23.2 0 22.22 0z"/></svg>`;
+const X_ICON = `<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.22-6.82-5.96 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.12z"/></svg>`;
 
 const AVATAR_GRADIENTS = [
   'linear-gradient(135deg,#1a3a5c,#0A1628)',
@@ -312,36 +314,43 @@ function initWaitlist(scopeEl) {
 // Advisors so both stay visually and behaviourally identical.
 function personCardHTML(m, i, idPrefix) {
   const grad = AVATAR_GRADIENTS[i % AVATAR_GRADIENTS.length];
+  // Real links only — skip empty values and "#" placeholders so cards never
+  // show a dead link. LinkedIn (and X) render as icons; a profile link stays text.
+  const has = url => url && url !== '#';
   const socials = [
-    m.twitter_url  ? `<a href="${m.twitter_url}">Twitter</a>`  : '',
-    m.linkedin_url ? `<a href="${m.linkedin_url}">LinkedIn</a>` : '',
-    m.profile_url  ? `<a href="${m.profile_url}">${m.profile_label || 'Profile'}</a>` : ''
-  ].filter(Boolean).join(' · ');
+    has(m.linkedin_url) ? `<a href="${m.linkedin_url}" target="_blank" rel="noopener" aria-label="${escapeAttr(m.name)} on LinkedIn">${LINKEDIN_ICON}</a>` : '',
+    has(m.twitter_url)  ? `<a href="${m.twitter_url}" target="_blank" rel="noopener" aria-label="${escapeAttr(m.name)} on X">${X_ICON}</a>` : '',
+    has(m.profile_url)  ? `<a href="${m.profile_url}" target="_blank" rel="noopener" class="team-social-text">${m.profile_label || 'Profile'}</a>` : ''
+  ].filter(Boolean).join('');
 
   const avatar = m.photo
     ? `<div class="team-avatar" style="--av-bg:${grad}"><img src="${m.photo}" alt="${m.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;z-index:1"></div>`
     : `<div class="team-avatar" style="--av-bg:${grad}"><span>${m.initials}</span></div>`;
 
-  // The expandable bio/socials block only appears when there's something to
-  // show, so an advisor listed with just a name and affiliation stays clean.
   const bioId = `${idPrefix}-bio-${i}`;
-  const detail = (m.bio || socials) ? `
-        <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="${bioId}">
-          <span class="bio-toggle-ic" aria-hidden="true"></span>
-          <span class="bio-toggle-label">Read bio</span>
-        </button>
+  const bioToggle = m.bio ? `
+          <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="${bioId}">
+            <span class="bio-toggle-ic" aria-hidden="true"></span>
+            <span class="bio-toggle-label">Read bio</span>
+          </button>` : '';
+
+  // "Read bio" and the social icons share one row, so the icons stay visible
+  // on the card without having to expand the bio.
+  const actions = (bioToggle || socials) ? `
+        <div class="team-actions">${bioToggle}
+          ${socials ? `<div class="team-socials">${socials}</div>` : ''}
+        </div>` : '';
+
+  const bioWrap = m.bio ? `
         <div class="team-bio-wrap" id="${bioId}">
-          <div class="team-bio-inner">
-            ${m.bio ? `<p>${m.bio}</p>` : ''}
-            ${socials ? `<div class="team-socials">${socials}</div>` : ''}
-          </div>
+          <div class="team-bio-inner"><p>${m.bio}</p></div>
         </div>` : '';
 
   return `
       <div class="team-card">
         ${avatar}
         <h4>${m.name}</h4>
-        <div class="team-role">${m.role}</div>${detail}
+        <div class="team-role">${m.role}</div>${actions}${bioWrap}
       </div>`;
 }
 
