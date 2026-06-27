@@ -363,7 +363,8 @@ async function renderTeam() {
   if (!gridEl) return;
 
   const data = await loadJSON('data/team.json');
-  const members = Array.isArray(data.members) ? data.members : [];
+  // "Show on website" toggle (active) — hide anyone switched off, without deleting them.
+  const members = (Array.isArray(data.members) ? data.members : []).filter(m => m.active !== false);
 
   gridEl.innerHTML = members.map((m, i) => personCardHTML(m, i, 'team')).join('');
   wireBioToggles(gridEl);
@@ -372,7 +373,7 @@ async function renderTeam() {
   // in the markup and only revealed once there are advisors to show.
   const advisorsGrid = document.getElementById('advisors-grid');
   const advisorsSection = document.getElementById('advisors');
-  const advisors = Array.isArray(data.advisors) ? data.advisors : [];
+  const advisors = (Array.isArray(data.advisors) ? data.advisors : []).filter(a => a.active !== false);
   if (advisorsGrid && advisors.length) {
     advisorsGrid.innerHTML = advisors.map((a, i) => personCardHTML(a, i, 'advisor')).join('');
     wireBioToggles(advisorsGrid);
@@ -433,12 +434,36 @@ async function renderHome() {
   const researchEl = document.getElementById('home-research-grid');
   const newsFeatEl = document.getElementById('home-news-featured');
   const newsListEl = document.getElementById('home-news-list');
-  if (!researchEl && !newsFeatEl && !newsListEl) return;
+  const partnersEl = document.getElementById('partners-track');
+  if (!researchEl && !newsFeatEl && !newsListEl && !partnersEl) return;
 
-  const [researchData, newsData] = await Promise.all([
+  const [researchData, newsData, partnersData] = await Promise.all([
     loadJSON('data/research.json'),
-    loadJSON('data/news.json')
+    loadJSON('data/news.json'),
+    loadJSON('data/partners.json')
   ]);
+
+  // Partners & Funders marquee. The CSS animates the track by translateX(-50%),
+  // so it must hold two identical halves for a seamless loop. Each partner has a
+  // "Show on website" toggle (active); switched-off partners are filtered out.
+  if (partnersEl) {
+    const active = (partnersData.partners || []).filter(p => p.active !== false);
+    const section = partnersEl.closest('.partners-section');
+    if (active.length) {
+      const chip = p => {
+        const img = `<img class="partner-logo" src="${p.logo}" alt="${escapeAttr(p.name)}">`;
+        const inner = p.url ? `<a href="${escapeAttr(p.url)}" target="_blank" rel="noopener">${img}</a>` : img;
+        return `<div class="partner-chip">${inner}</div>`;
+      };
+      const repeats = Math.max(2, Math.ceil(10 / active.length));
+      let half = '';
+      for (let i = 0; i < repeats; i++) half += active.map(chip).join('');
+      partnersEl.innerHTML = half + half;
+      if (section) section.style.display = '';
+    } else if (section) {
+      section.style.display = 'none';
+    }
+  }
 
   if (researchEl) {
     if (!researchData.papers || researchData.papers.length === 0) {

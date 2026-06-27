@@ -121,6 +121,7 @@ collections:
               - { label: LinkedIn URL,        name: linkedin_url, widget: string, required: false }
               - { label: Profile URL,         name: profile_url,  widget: string, required: false }
               - { label: Profile Link Label,  name: profile_label, widget: string, required: false }
+              - { label: "Show on website",   name: active,        widget: boolean, default: true, hint: "Turn off to temporarily hide this person from the site without deleting them." }
           - name: advisors
             label: Board of Advisors
             label_singular: Advisor
@@ -136,6 +137,23 @@ collections:
               - { label: LinkedIn URL,        name: linkedin_url, widget: string, required: false }
               - { label: Profile URL,         name: profile_url,  widget: string, required: false }
               - { label: Profile Link Label,  name: profile_label, widget: string, required: false }
+              - { label: "Show on website",   name: active,        widget: boolean, default: true, hint: "Turn off to temporarily hide this advisor from the site without deleting them." }
+
+  - name: partners
+    label: Partners & Funders
+    files:
+      - name: partners
+        label: All Partners & Funders
+        file: data/partners.json
+        fields:
+          - name: partners
+            label: Partners
+            widget: list
+            fields:
+              - { label: Name,              name: name,   widget: string, hint: "Shown as the logo's alt text." }
+              - { label: Logo,              name: logo,   widget: image }
+              - { label: Website URL,       name: url,    widget: string, required: false, hint: "Optional — links the logo to the partner's website." }
+              - { label: "Show on website", name: active, widget: boolean, default: true, hint: "Turn off to temporarily hide this partner without deleting it." }
 
   - name: news
     label: News & Commentary
