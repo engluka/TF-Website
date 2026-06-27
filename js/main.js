@@ -157,45 +157,6 @@ if (filterBtns.length) {
   });
 }
 
-// ---- Hero rotating word (typewriter) ----
-const rotatingWord = document.querySelector('.hero-word-rotate');
-if (rotatingWord) {
-  const words = ['Transport', 'Mobility', 'Cities', 'People'];
-  let idx = 0;
-
-  function typeWord(word, done) {
-    let i = 0;
-    rotatingWord.textContent = '';
-    (function type() {
-      rotatingWord.textContent = word.slice(0, ++i);
-      if (i < word.length) setTimeout(type, 100);
-      else done();
-    })();
-  }
-
-  function deleteWord(done) {
-    (function del() {
-      const cur = rotatingWord.textContent;
-      if (cur.length === 0) { done(); return; }
-      rotatingWord.textContent = cur.slice(0, -1);
-      setTimeout(del, 60);
-    })();
-  }
-
-  function loop() {
-    typeWord(words[idx], () => {
-      setTimeout(() => {
-        deleteWord(() => {
-          idx = (idx + 1) % words.length;
-          setTimeout(loop, 400);
-        });
-      }, 1800);
-    });
-  }
-
-  loop();
-}
-
 // ---- Newsletter form (Brevo) ----
 const nlForm = document.querySelector('.newsletter-form');
 if (nlForm) {
