@@ -305,7 +305,10 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
   grid-template-columns: 1fr;
   gap: 5rem;
   align-items: center;
+  justify-items: center;
+  text-align: center;
 }
+.hero-text { max-width: 900px; }
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -318,7 +321,8 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
   color: var(--c-teal);
   margin-bottom: 1.75rem;
 }
-.hero-eyebrow::before {
+.hero-eyebrow::before,
+.hero-eyebrow::after {
   content: '';
   display: block;
   width: 2.5rem; height: 2px;
