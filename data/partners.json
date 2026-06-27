@@ -1,9 +1,34 @@
 {
   "partners": [
-    { "name": "GIZ", "logo": "/images/partners/giz.svg", "url": "", "active": true },
-    { "name": "Agora Verkehrswende", "logo": "/images/partners/agora.svg", "url": "", "active": true },
-    { "name": "UN-Habitat", "logo": "/images/partners/unhabitat.svg", "url": "", "active": true },
-    { "name": "Agence Française de Développement", "logo": "/images/partners/afd.png", "url": "", "active": true },
-    { "name": "VREF — Volvo Research and Educational Foundations", "logo": "/images/partners/vref.svg", "url": "", "active": true }
+    {
+      "name": "GIZ",
+      "logo": "/images/partners/giz.svg",
+      "url": "",
+      "active": true
+    },
+    {
+      "name": "Agora Verkehrswende",
+      "logo": "/images/partners/agora.svg",
+      "url": "",
+      "active": true
+    },
+    {
+      "name": "UN-Habitat",
+      "logo": "/images/partners/unhabitat.svg",
+      "url": "",
+      "active": false
+    },
+    {
+      "name": "Agence Française de Développement",
+      "logo": "/images/partners/afd.png",
+      "url": "",
+      "active": false
+    },
+    {
+      "name": "VREF — Volvo Research and Educational Foundations",
+      "logo": "/images/partners/vref.svg",
+      "url": "",
+      "active": false
+    }
   ]
 }
