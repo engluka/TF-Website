@@ -15,7 +15,9 @@
       "PowerShell(Start-Process \"c:\\\\Users\\\\aammekonnen\\\\OneDrive\\\\Products\\\\TF Website\\\\brand\\\\letterhead.html\")",
       "PowerShell(\"opened\")",
       "PowerShell(Start-Process \"http://localhost:8000/team.html\")",
-      "PowerShell(\"opened team page\")"
+      "PowerShell(\"opened team page\")",
+      "PowerShell(Start-Process \"c:\\\\Users\\\\aammekonnen\\\\OneDrive\\\\Products\\\\TF Website\\\\about.html\")",
+      "PowerShell(\"opened about page\")"
     ]
   }
 }
