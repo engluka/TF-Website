@@ -848,31 +848,6 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
   border-radius: 50%;
 }
 
-.approach-grid {
-  max-width: var(--max-w);
-  margin: 3rem auto 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-.approach-step {
-  padding: 2rem;
-  border: 1px solid var(--c-grey-100);
-  border-radius: var(--r-lg);
-  background: var(--c-white);
-  transition: var(--t);
-}
-.approach-step:hover { border-color: var(--c-teal); box-shadow: var(--shadow-md); }
-.step-num {
-  font-family: var(--font-display);
-  font-size: 3.5rem; font-weight: 800;
-  color: var(--c-grey-100);
-  line-height: 1;
-  margin-bottom: 1rem;
-}
-.approach-step h4 { margin-bottom: .5rem; font-size: 1.15rem; }
-.approach-step p  { font-size: .9rem; line-height: 1.65; }
-
 .values-grid {
   max-width: var(--max-w);
   margin: 3rem auto 0;
@@ -1498,7 +1473,6 @@ textarea.form-control { resize: vertical; min-height: 140px; line-height: 1.6; }
   .pillars-grid  { grid-template-columns: 1fr; }
   .stats-band-inner { grid-template-columns: repeat(2,1fr); }
   .research-grid-3 { grid-template-columns: 1fr; }
-  .approach-grid { grid-template-columns: 1fr 1fr; }
   .team-grid { grid-template-columns: repeat(2,1fr); }
 }
 @media (max-width: 640px) {
@@ -1509,7 +1483,6 @@ textarea.form-control { resize: vertical; min-height: 140px; line-height: 1.6; }
   .stats-band-inner { grid-template-columns: 1fr 1fr; }
   .newsletter-form { flex-direction: column; }
   .research-full-grid { grid-template-columns: 1fr; }
-  .approach-grid { grid-template-columns: 1fr; }
   .values-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: clamp(3rem, 12vw, 5rem); }
   .pillars-section { margin-top: -2rem; }
