@@ -47,6 +47,12 @@
       "logo": "/images/partners/gnpt.png",
       "url": "https://www.populartransport.net/",
       "active": true
+    },
+    {
+      "name": "Shared-Use Mobility Center (SUMC)",
+      "logo": "/images/partners/sumc.jpg",
+      "url": "https://sharedusemobilitycenter.org/",
+      "active": true
     }
   ]
 }
