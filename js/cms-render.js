@@ -40,6 +40,23 @@ async function renderResearch() {
 
   const { papers } = await loadJSON('data/research.json');
 
+  // No reports yet — show a tidy "coming soon" state instead of an empty grid.
+  if (!papers || papers.length === 0) {
+    const filterBar = document.querySelector('.filter-bar');
+    if (filterBar) filterBar.style.display = 'none';
+    if (featuredEl) featuredEl.style.display = 'none';
+    if (gridEl) {
+      gridEl.innerHTML = `
+        <div style="grid-column:1/-1;text-align:center;padding:4rem 1rem">
+          <div class="label" style="justify-content:center;margin-bottom:1rem">Coming Soon</div>
+          <h3 style="margin-bottom:.75rem">Our research library is on its way</h3>
+          <p style="max-width:540px;margin:0 auto">We're preparing our first reports on African urban mobility, e-mobility, and road safety. Subscribe to be notified the moment they're published.</p>
+          <a href="index.html#newsletter" class="btn btn-primary" style="margin-top:1.75rem">Subscribe for Updates ${ARROW_SM}</a>
+        </div>`;
+    }
+    return;
+  }
+
   if (featuredEl) {
     const f = papers.find(p => p.featured) || papers[0];
     featuredEl.innerHTML = `
@@ -424,18 +441,24 @@ async function renderHome() {
   ]);
 
   if (researchEl) {
-    researchEl.innerHTML = researchData.papers.slice(0, 3).map(p => `
-      <div class="r-card">
-        <div class="r-card-body">
-          <span class="r-card-tag">${p.tag}</span>
-          <h4>${p.title}</h4>
-          <p>${p.summary}</p>
-        </div>
-        <div class="r-card-footer">
-          <span class="r-card-date">${p.date_display}</span>
-          <a href="research.html" class="r-card-link">Read Report ${ARROW_SM}</a>
-        </div>
-      </div>`).join('');
+    if (!researchData.papers || researchData.papers.length === 0) {
+      // No reports yet — hide the Recent Publications section entirely.
+      const section = researchEl.closest('section');
+      if (section) section.style.display = 'none';
+    } else {
+      researchEl.innerHTML = researchData.papers.slice(0, 3).map(p => `
+        <div class="r-card">
+          <div class="r-card-body">
+            <span class="r-card-tag">${p.tag}</span>
+            <h4>${p.title}</h4>
+            <p>${p.summary}</p>
+          </div>
+          <div class="r-card-footer">
+            <span class="r-card-date">${p.date_display}</span>
+            <a href="research.html" class="r-card-link">Read Report ${ARROW_SM}</a>
+          </div>
+        </div>`).join('');
+    }
   }
 
   if (newsFeatEl && newsData.featured) {
