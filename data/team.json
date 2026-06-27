@@ -2,6 +2,7 @@
   "members": [
     {
       "twitter_url": "#",
+      "active": true,
       "bio": "Specializing in sustainable mobility, electric mobility, and intelligent transport systems, Edna holds a Master's degree in Transportation Engineering. Bringing expertise from various institutions, she actively contributes to research and mentors young engineers at Egerton University, Kenya.",
       "name": "Edna Mercy Manyasa",
       "linkedin_url": "https://www.linkedin.com/in/edna-m-370788223/",
@@ -13,6 +14,7 @@
     },
     {
       "twitter_url": "#",
+      "active": true,
       "bio": "Anteneh is a seasoned professional in transport planning holding a PhD in Safe and Sustainable Urban Mobility. Anteneh has been leading projects in various countries on enhancing urban safety and liveability for over a decade and half. ",
       "name": "Anteneh Afework Mekonnen",
       "linkedin_url": "https://nl.linkedin.com/in/antenehamekonnen",
@@ -24,6 +26,7 @@
     },
     {
       "twitter_url": "#",
+      "active": true,
       "bio": "With over five years of experience in sustainable mobility, and a PhD in urban planning, Kadja is well-equipped to contribute to the organization's research initiatives, emphasizing sustainable urban development.",
       "name": "Jeannot Melchior Kadja",
       "linkedin_url": "https://www.linkedin.com/in/cossi-jeannot-melchior-kadja-488aaa19a/?locale=en",
@@ -35,6 +38,7 @@
     },
     {
       "twitter_url": "#",
+      "active": true,
       "bio": "An academic and researcher focusing on sustainable development, economics, energy, environment, and climate change. As a member of energy associations, Judith provides a unique interdisciplinary perspective to the institute's endeavors.",
       "name": "Judith Flavia",
       "linkedin_url": "https://www.linkedin.com/in/judith-flavia-nakirijja-3947a41aa/",
@@ -46,6 +50,7 @@
     },
     {
       "twitter_url": "#",
+      "active": true,
       "bio": "Zelalem is a transport researcher and urban mobility specialist with expertise in transport modelling, travel behaviour analysis, and sustainable mobility planning. His research focuses on advancing data-driven approaches to transport planning and policy evaluation. His work bridges academic research and practical applications, supporting evidence-based decision-making for more efficient, inclusive, and sustainable transport systems. \n",
       "name": "Zelalem Birhanu",
       "linkedin_url": "https://www.linkedin.com/in/zelalem-birhanu-836773118/",
@@ -57,6 +62,7 @@
     },
     {
       "twitter_url": "#",
+      "active": false,
       "bio": "Namatirai is a transport engineer and policy practitioner with experience in sustainable mobility, road safety, and public transport systems. She has worked with research and public sector institutions on transport safety strategy development, policy analysis, and evidence-based planning. She contributes to stakeholder engagement, data-driven policy design, and capacity building aimed at improving safe, efficient, and inclusive transport systems.\n",
       "name": "Namatirai Cheure",
       "linkedin_url": "https://www.linkedin.com/in/namatirai-cheure-b1132a7b/",
@@ -68,6 +74,7 @@
     },
     {
       "twitter_url": "#",
+      "active": true,
       "bio": "Gaya provides strategic legal guidance to our organization, helping us navigate complex legal and regulatory environments while supporting sound decision-making and risk management. He is committed to advancing accountability, transparency, and effective governance through high-quality legal counsel and professional excellence.",
       "name": "Gaya",
       "linkedin_url": "#",
@@ -83,7 +90,8 @@
       "linkedin_url": "https://www.linkedin.com/in/dagim-afework-m-b7bab850/",
       "bio": "Dagim is a communications and public relations specialist with expertise in strategic communication, stakeholder engagement, digital media, and public outreach. He supports our organization in strengthening our public profile, fostering meaningful engagement, and translating complex ideas into clear and impactful messages for diverse audiences.",
       "initials": "DA",
-      "photo": "/images/uploads/dagim_bw.jpg"
+      "photo": "/images/uploads/dagim_bw.jpg",
+      "active": true
     }
   ],
   "advisors": [
@@ -92,21 +100,24 @@
       "photo": "/images/uploads/christian.jpg",
       "role": "Agora Verkehrswende",
       "linkedin_url": "https://www.linkedin.com/in/christian-hochfeld-1417848/",
-      "initials": "CH"
+      "initials": "CH",
+      "active": false
     },
     {
       "name": "Gladys Nyachieo",
       "initials": "GN",
       "photo": "/images/uploads/galdys.jpg",
       "role": "Multi Media University Kenya",
-      "linkedin_url": "https://www.linkedin.com/in/gladys-moraa-nyachieo-09232842/"
+      "linkedin_url": "https://www.linkedin.com/in/gladys-moraa-nyachieo-09232842/",
+      "active": true
     },
     {
       "name": "Chris Kost ",
       "initials": "CK",
       "linkedin_url": "https://et.linkedin.com/in/chris-kost",
       "role": "Independent Consultant ",
-      "photo": "/images/uploads/chris.jpg"
+      "photo": "/images/uploads/chris.jpg",
+      "active": true
     }
   ]
 }
