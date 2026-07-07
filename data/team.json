@@ -118,6 +118,14 @@
       "role": "Independent Consultant ",
       "photo": "/images/uploads/chris.jpg",
       "active": true
+    },
+    {
+      "active": true,
+      "name": "Naville Geiriseb",
+      "initials": "NG",
+      "photo": "/images/uploads/naville-color-copy.jpg",
+      "role": "Agora",
+      "linkedin_url": "https://www.linkedin.com/in/navillegeiriseb/"
     }
   ]
 }
