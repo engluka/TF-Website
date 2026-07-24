@@ -53,6 +53,12 @@
       "logo": "/images/partners/sumc.jpg",
       "url": "https://sharedusemobilitycenter.org/",
       "active": true
+    },
+    {
+      "name": "Transport Data Commons",
+      "logo": "/images/partners/tdc.svg",
+      "url": "https://tdc.unece.org/",
+      "active": true
     }
   ]
 }
