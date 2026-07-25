@@ -530,7 +530,7 @@ async function renderHome() {
 
 // ---- Projects Page ----
 const PROJECT_STATUS = { ongoing: 'Ongoing', upcoming: 'Upcoming', completed: 'Completed' };
-const PROJECT_FOCUS  = { urban: 'Urban & Informal Mobility', emobility: 'E-Mobility & Decarbonisation', safety: 'Road Safety' };
+const PROJECT_FOCUS  = { urban: 'Urban & Informal Mobility', emobility: 'E-Mobility & Decarbonisation', safety: 'Road Safety', crosscutting: 'Cross-cutting' };
 
 async function renderProjects() {
   const gridEl = document.getElementById('projects-grid');

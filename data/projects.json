@@ -21,6 +21,17 @@
       "partners": "GIZ",
       "url": "",
       "active": true
+    },
+    {
+      "title": "Bringing African Transport Data into the Transport Data Commons",
+      "summary": "As an active African contributor to the Transport Data Commons (TDC) — the UNECE-led open-data initiative — Transport Futures curates, harmonises, and uploads African transport datasets so the continent is properly represented in the global open-data ecosystem. This keeps African evidence in international research, benchmarking, and policy, and channels open, comparable data back to planners and researchers across the continent.",
+      "status": "ongoing",
+      "category": "crosscutting",
+      "image": "",
+      "timeframe": "",
+      "partners": "Transport Data Commons (UNECE)",
+      "url": "https://tdc.unece.org/",
+      "active": true
     }
   ]
 }

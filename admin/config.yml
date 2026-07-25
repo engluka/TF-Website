@@ -80,6 +80,7 @@ collections:
                   - { label: Urban & Informal Mobility,    value: urban }
                   - { label: E-Mobility & Decarbonisation, value: emobility }
                   - { label: Road Safety,                  value: safety }
+                  - { label: Cross-cutting,                value: crosscutting }
               - { label: Cover Image,    name: image,     widget: image, required: false, hint: "Optional cover image shown on the project card." }
               - { label: Timeframe,      name: timeframe, widget: string, required: false, hint: "e.g. 2025–2026" }
               - { label: Partners / Funders, name: partners, widget: string, required: false }
