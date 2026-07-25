@@ -528,6 +528,56 @@ async function renderHome() {
   }
 }
 
+// ---- Projects Page ----
+const PROJECT_STATUS = { ongoing: 'Ongoing', upcoming: 'Upcoming', completed: 'Completed' };
+const PROJECT_FOCUS  = { urban: 'Urban & Informal Mobility', emobility: 'E-Mobility & Decarbonisation', safety: 'Road Safety' };
+
+async function renderProjects() {
+  const gridEl = document.getElementById('projects-grid');
+  if (!gridEl) return;
+
+  const { projects } = await loadJSON('data/projects.json');
+  const active = (Array.isArray(projects) ? projects : []).filter(p => p.active !== false);
+
+  // No projects yet — show a tidy "coming soon" state instead of an empty grid.
+  if (!active.length) {
+    gridEl.innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:4rem 1rem">
+        <div class="label" style="justify-content:center;margin-bottom:1rem">Coming Soon</div>
+        <h3 style="margin-bottom:.75rem">Our current projects will appear here</h3>
+        <p style="max-width:540px;margin:0 auto">We're preparing this showcase of our ongoing and upcoming work. Subscribe to hear when it's published.</p>
+        <a href="index.html#newsletter" class="btn btn-primary" style="margin-top:1.75rem">Subscribe for Updates ${ARROW_SM}</a>
+      </div>`;
+    return;
+  }
+
+  gridEl.innerHTML = active.map(p => {
+    const status = PROJECT_STATUS[p.status] || '';
+    const focus  = PROJECT_FOCUS[p.category] || '';
+    const media  = p.image
+      ? `<div class="project-media" style="background-image:url('${p.image}')"></div>`
+      : `<div class="project-media project-media--empty" aria-hidden="true"></div>`;
+    const foot = [
+      p.timeframe ? `<span class="project-when">${p.timeframe}</span>` : '',
+      p.partners  ? `<span class="project-partners">Partners: ${p.partners}</span>` : ''
+    ].filter(Boolean).join('');
+    return `
+      <article class="project-card" data-category="${p.category}">
+        ${media}
+        <div class="project-body">
+          <div class="project-meta">
+            ${status ? `<span class="project-status project-status--${p.status}">${status}</span>` : ''}
+            ${focus ? `<span class="project-focus">${focus}</span>` : ''}
+          </div>
+          <h3>${p.title}</h3>
+          <p>${p.summary}</p>
+          ${foot ? `<div class="project-foot">${foot}</div>` : ''}
+          ${p.url ? `<a href="${p.url}" class="r-card-link" target="_blank" rel="noopener" style="margin-top:1.1rem">Learn more ${ARROW_SM}</a>` : ''}
+        </div>
+      </article>`;
+  }).join('');
+}
+
 // ---- Init ----
 // Tell the rest of the page when dynamic sections have been injected. They grow
 // the document, so anything that scrolls to an anchor (e.g. the Subscribe link
@@ -541,5 +591,6 @@ if (_page === 'index' || _page === '') {
   applySettings().catch(console.error);
   renderHome().catch(console.error).finally(signalRendered);
 } else if (_page === 'research') renderResearch().catch(console.error).finally(signalRendered);
+else if (_page === 'projects')   renderProjects().catch(console.error).finally(signalRendered);
 else if (_page === 'events')     renderEvents().catch(console.error).finally(signalRendered);
 else if (_page === 'team')       renderTeam().catch(console.error).finally(signalRendered);

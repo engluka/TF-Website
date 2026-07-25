@@ -1,0 +1,26 @@
+{
+  "projects": [
+    {
+      "title": "Transport, Energy, and Emissions Across 54 African Countries",
+      "summary": "Building a large open database covering all 54 African countries — spanning demographics, transport infrastructure and demand, motorisation, emissions and targets, electric vehicles and charging, energy and fuel prices, hydrogen roadmaps, battery reuse and recycling, and transport policy.",
+      "status": "ongoing",
+      "category": "emobility",
+      "image": "/images/uploads/emissions-database.jpg",
+      "timeframe": "2025–2026",
+      "partners": "Agora Verkehrswende",
+      "url": "",
+      "active": true
+    },
+    {
+      "title": "Informal Public Transport Systems in Four African Secondary Cities",
+      "summary": "Collecting, harmonising, and analysing data on informal public transport across four African secondary cities — from modes, routes, and ridership to fares, business models, and governance. The project fills priority data gaps through targeted fieldwork and stakeholder engagement, producing comparable, open, quality-assured datasets (shared via the Transport Data Commons) alongside city factsheets, a study brief, and practical planning and policy recommendations.",
+      "status": "upcoming",
+      "category": "urban",
+      "image": "/images/uploads/informal-transport.jpg",
+      "timeframe": "2026–2027",
+      "partners": "GIZ",
+      "url": "",
+      "active": true
+    }
+  ]
+}
