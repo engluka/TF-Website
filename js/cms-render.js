@@ -312,7 +312,7 @@ function initWaitlist(scopeEl) {
 // ---- Team Page ----
 // Renders one person card. Shared by the core team grid and the Board of
 // Advisors so both stay visually and behaviourally identical.
-function personCardHTML(m, i, idPrefix) {
+function personCardHTML(m, i) {
   const grad = AVATAR_GRADIENTS[i % AVATAR_GRADIENTS.length];
   // Real links only — skip empty values and "#" placeholders so cards never
   // show a dead link. LinkedIn (and X) render as icons; a profile link stays text.
@@ -323,47 +323,55 @@ function personCardHTML(m, i, idPrefix) {
     has(m.profile_url)  ? `<a href="${m.profile_url}" target="_blank" rel="noopener" class="team-social-text">${m.profile_label || 'Profile'}</a>` : ''
   ].filter(Boolean).join('');
 
-  const avatar = m.photo
-    ? `<div class="team-avatar" style="--av-bg:${grad}"><img src="${m.photo}" alt="${m.name}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;z-index:1"></div>`
-    : `<div class="team-avatar" style="--av-bg:${grad}"><span>${m.initials}</span></div>`;
+  const face = m.photo
+    ? `<img src="${m.photo}" alt="${escapeAttr(m.name)}">`
+    : `<span>${m.initials}</span>`;
 
-  const bioId = `${idPrefix}-bio-${i}`;
-  const bioToggle = m.bio ? `
-          <button type="button" class="bio-toggle" aria-expanded="false" aria-controls="${bioId}">
-            <span class="bio-toggle-ic" aria-hidden="true"></span>
-            <span class="bio-toggle-label">Read bio</span>
-          </button>` : '';
+  // The photo flips on hover (tap/keyboard elsewhere) to reveal the bio on its
+  // reverse side. With no bio there's nothing to flip to, so it stays a plain photo.
+  const avatar = m.bio
+    ? `<div class="team-avatar team-avatar--flip" style="--av-bg:${grad}" tabindex="0" role="button" aria-expanded="false" aria-label="Show bio for ${escapeAttr(m.name)}">
+          <div class="team-avatar-inner">
+            <div class="team-face team-face--front">${face}</div>
+            <div class="team-face team-face--back"><p>${m.bio}</p></div>
+          </div>
+        </div>`
+    : `<div class="team-avatar" style="--av-bg:${grad}">
+          <div class="team-avatar-inner">
+            <div class="team-face team-face--front">${face}</div>
+          </div>
+        </div>`;
 
-  // "Read bio" and the social icons share one row, so the icons stay visible
-  // on the card without having to expand the bio.
-  const actions = (bioToggle || socials) ? `
-        <div class="team-actions">${bioToggle}
-          ${socials ? `<div class="team-socials">${socials}</div>` : ''}
-        </div>` : '';
-
-  const bioWrap = m.bio ? `
-        <div class="team-bio-wrap" id="${bioId}">
-          <div class="team-bio-inner"><p>${m.bio}</p></div>
+  const actions = socials ? `
+        <div class="team-actions">
+          <div class="team-socials">${socials}</div>
         </div>` : '';
 
   return `
       <div class="team-card">
         ${avatar}
         <h4>${m.name}</h4>
-        <div class="team-role">${m.role}</div>${actions}${bioWrap}
+        <div class="team-role">${m.role}</div>${actions}
       </div>`;
 }
 
-// Toggle a card's bio open/closed (event delegation across a grid).
-function wireBioToggles(gridEl) {
+// CSS handles the flip on hover. This adds click/tap (touch devices have no
+// hover) and keyboard support, via event delegation across a grid.
+function wireBioFlips(gridEl) {
+  const flip = el => {
+    const open = el.classList.toggle('flipped');
+    el.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
   gridEl.addEventListener('click', e => {
-    const btn = e.target.closest('.bio-toggle');
-    if (!btn) return;
-    const card = btn.closest('.team-card');
-    const open = card.classList.toggle('open');
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    const label = btn.querySelector('.bio-toggle-label');
-    if (label) label.textContent = open ? 'Hide bio' : 'Read bio';
+    const av = e.target.closest('.team-avatar--flip');
+    if (av) flip(av);
+  });
+  gridEl.addEventListener('keydown', e => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const av = e.target.closest('.team-avatar--flip');
+    if (!av) return;
+    e.preventDefault();
+    flip(av);
   });
 }
 
@@ -375,8 +383,8 @@ async function renderTeam() {
   // "Show on website" toggle (active) — hide anyone switched off, without deleting them.
   const members = (Array.isArray(data.members) ? data.members : []).filter(m => m.active !== false);
 
-  gridEl.innerHTML = members.map((m, i) => personCardHTML(m, i, 'team')).join('');
-  wireBioToggles(gridEl);
+  gridEl.innerHTML = members.map((m, i) => personCardHTML(m, i)).join('');
+  wireBioFlips(gridEl);
 
   // Board of Advisors — same card style, separate list. The section is hidden
   // in the markup and only revealed once there are advisors to show.
@@ -384,8 +392,8 @@ async function renderTeam() {
   const advisorsSection = document.getElementById('advisors');
   const advisors = (Array.isArray(data.advisors) ? data.advisors : []).filter(a => a.active !== false);
   if (advisorsGrid && advisors.length) {
-    advisorsGrid.innerHTML = advisors.map((a, i) => personCardHTML(a, i, 'advisor')).join('');
-    wireBioToggles(advisorsGrid);
+    advisorsGrid.innerHTML = advisors.map((a, i) => personCardHTML(a, i)).join('');
+    wireBioFlips(advisorsGrid);
     if (advisorsSection) advisorsSection.style.display = '';
   }
 }

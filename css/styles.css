@@ -1110,26 +1110,66 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
   gap: 2.5rem;
 }
 .team-card { transition: var(--t); }
-.team-card:hover .team-avatar { border-color: var(--c-teal); }
+.team-card:hover .team-face--front { border-color: var(--c-teal); }
+
+/* ----- Avatar: flips to reveal the bio on its reverse side ----- */
 .team-avatar {
   width: 100%; aspect-ratio: 1;
+  margin-bottom: 1.25rem;
+  position: relative;
+  perspective: 1000px;
+}
+.team-avatar-inner {
+  position: absolute; inset: 0;
+  transform-style: preserve-3d;
+  transition: transform .6s cubic-bezier(.4, 0, .2, 1);
+}
+.team-avatar--flip { cursor: pointer; }
+.team-avatar--flip:hover .team-avatar-inner,
+.team-avatar--flip:focus-visible .team-avatar-inner,
+.team-avatar--flip.flipped .team-avatar-inner { transform: rotateY(180deg); }
+.team-avatar--flip:focus-visible { outline: 2px solid var(--c-teal); outline-offset: 3px; }
+
+.team-face {
+  position: absolute; inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   border-radius: var(--r-lg);
   border: 2px solid var(--c-grey-100);
-  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  display: flex;
+  align-items: center; justify-content: center;
+  transition: border-color .3s ease;
+}
+.team-face--front {
+  background: var(--av-bg, linear-gradient(135deg, var(--c-navy-600) 0%, var(--c-navy) 100%));
   font-family: var(--font-display);
   font-size: 2.75rem; font-weight: 800;
   color: var(--c-white);
-  margin-bottom: 1.25rem;
-  transition: border-color .3s ease;
-  position: relative;
-  overflow: hidden;
 }
-.team-avatar::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: var(--av-bg, linear-gradient(135deg, var(--c-navy-600) 0%, var(--c-navy) 100%));
+.team-face--front img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.team-face--back {
+  transform: rotateY(180deg);
+  background: linear-gradient(155deg, var(--c-navy-700) 0%, var(--c-navy) 100%);
+  border-color: rgba(0, 196, 204, .45);
+  align-items: flex-start;
+  padding: 1.15rem 1.25rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
-.team-avatar span { position: relative; z-index: 1; }
+.team-face--back p {
+  font-size: .76rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .82);
+  text-align: left;
+}
+.team-face--back::-webkit-scrollbar { width: 4px; }
+.team-face--back::-webkit-scrollbar-thumb { background: rgba(0, 196, 204, .4); border-radius: 4px; }
+
+/* Flipping is decorative motion — respect a reduced-motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  .team-avatar-inner { transition: none; }
+}
 .team-card h4 { font-size: 1.15rem; margin-bottom: .2rem; }
 .team-role {
   font-size: .78rem;
@@ -1142,76 +1182,23 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
 }
 .team-card p { font-size: .87rem; color: var(--c-grey-600); line-height: 1.6; }
 .team-actions { margin-top: 1rem; display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
-.team-actions .bio-toggle { margin-top: 0; }
 .team-socials { display: flex; align-items: center; gap: .65rem; }
 .team-socials a { color: var(--c-grey-400); transition: color .25s ease; display: inline-flex; align-items: center; }
 .team-socials a:hover { color: var(--c-teal); }
 .team-socials a svg { display: block; }
 .team-social-text { font-size: .75rem; }
 
-/* ----- Collapsible team bio ----- */
-.bio-toggle {
-  margin-top: 1rem;
-  display: inline-flex;
-  align-items: center;
-  gap: .55rem;
-  background: transparent;
-  border: 1px solid var(--c-grey-200);
-  border-radius: 100px;
-  padding: .5rem .95rem;
-  cursor: pointer;
-  font-family: var(--font-display);
-  font-size: .7rem;
-  font-weight: 600;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--c-grey-600);
-  transition: border-color .25s ease, color .25s ease, background .25s ease;
-}
-.bio-toggle:hover {
-  border-color: var(--c-teal);
-  color: var(--c-teal);
-  background: rgba(0, 196, 204, .07);
-}
-.bio-toggle:focus-visible { outline: 2px solid var(--c-teal); outline-offset: 2px; }
-.team-card.open .bio-toggle { border-color: var(--c-teal); color: var(--c-teal); }
-
-.bio-toggle-ic { position: relative; width: 16px; height: 16px; flex-shrink: 0; }
-.bio-toggle-ic::before,
-.bio-toggle-ic::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background: currentColor;
-  border-radius: 2px;
-  transform: translate(-50%, -50%);
-  transition: transform .3s cubic-bezier(.4, 0, .2, 1);
-}
-.bio-toggle-ic::before { width: 11px; height: 2px; }
-.bio-toggle-ic::after  { width: 2px; height: 11px; }
-.team-card.open .bio-toggle-ic::after { transform: translate(-50%, -50%) rotate(90deg); }
-
-.team-bio-wrap {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows .4s cubic-bezier(.4, 0, .2, 1);
-}
-.team-card.open .team-bio-wrap { grid-template-rows: 1fr; }
-.team-bio-inner { overflow: hidden; }
-.team-bio-inner p { margin: .9rem 0 0; }
-
 /* ----- Board of Advisors (compact variant of the team grid) ----- */
 /* Circular avatars distinguish advisors from core staff at a glance. */
 .team-grid--advisors .team-avatar {
-  border-radius: 50%;
   width: 116px; height: 116px;
   aspect-ratio: auto;
   margin-left: auto; margin-right: auto;
-  font-size: 2rem;
 }
+.team-grid--advisors .team-face { border-radius: 50%; font-size: 2rem; }
+.team-grid--advisors .team-face--back { padding: .9rem; }
+.team-grid--advisors .team-face--back p { font-size: .62rem; line-height: 1.45; }
 .team-grid--advisors .team-card { text-align: center; }
-.team-grid--advisors .bio-toggle { margin-left: auto; margin-right: auto; }
 .team-grid--advisors .team-actions { justify-content: center; }
 
 /* ========== CONTACT PAGE ========== */
