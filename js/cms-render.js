@@ -455,13 +455,26 @@ async function renderHome() {
   const newsFeatEl = document.getElementById('home-news-featured');
   const newsListEl = document.getElementById('home-news-list');
   const partnersEl = document.getElementById('partners-track');
-  if (!researchEl && !newsFeatEl && !newsListEl && !partnersEl) return;
+  const projectsEl = document.getElementById('home-projects-grid');
+  if (!researchEl && !newsFeatEl && !newsListEl && !partnersEl && !projectsEl) return;
 
-  const [researchData, newsData, partnersData] = await Promise.all([
+  const [researchData, newsData, partnersData, projectsData] = await Promise.all([
     loadJSON('data/research.json'),
     loadJSON('data/news.json'),
-    loadJSON('data/partners.json')
+    loadJSON('data/partners.json'),
+    loadJSON('data/projects.json')
   ]);
+
+  // Current work — a three-up taster of live projects, hidden if there are none.
+  if (projectsEl) {
+    const active = (projectsData.projects || []).filter(p => p.active !== false).slice(0, 3);
+    const section = projectsEl.closest('section');
+    if (active.length) {
+      projectsEl.innerHTML = active.map(projectCardHTML).join('');
+    } else if (section) {
+      section.style.display = 'none';
+    }
+  }
 
   // Partners & Funders marquee. The CSS animates the track by translateX(-50%),
   // so it must hold two identical halves for a seamless loop. Each partner has a
@@ -539,7 +552,35 @@ async function renderHome() {
   }
 }
 
-// ---- Projects Page ----
+// ---- Projects ----
+// One card template, shared by the Projects page and the homepage taster, so
+// the two can't drift apart.
+function projectCardHTML(p) {
+  const status = PROJECT_STATUS[p.status] || '';
+  const focus  = PROJECT_FOCUS[p.category] || '';
+  const media  = p.image
+    ? `<div class="project-media" style="background-image:url('${p.image}')"></div>`
+    : `<div class="project-media project-media--empty" aria-hidden="true"></div>`;
+  const foot = [
+    p.timeframe ? `<span class="project-when">${p.timeframe}</span>` : '',
+    p.partners  ? `<span class="project-partners">Partners: ${p.partners}</span>` : ''
+  ].filter(Boolean).join('');
+  return `
+      <article class="project-card" data-category="${p.category}">
+        ${media}
+        <div class="project-body">
+          <div class="project-meta">
+            ${status ? `<span class="project-status project-status--${p.status}">${status}</span>` : ''}
+            ${focus ? `<span class="project-focus">${focus}</span>` : ''}
+          </div>
+          <h3>${p.title}</h3>
+          <p>${p.summary}</p>
+          ${foot ? `<div class="project-foot">${foot}</div>` : ''}
+          ${p.url ? `<a href="${p.url}" class="r-card-link" target="_blank" rel="noopener" style="margin-top:1.1rem">Learn more ${ARROW_SM}</a>` : ''}
+        </div>
+      </article>`;
+}
+
 const PROJECT_STATUS = { ongoing: 'Ongoing', upcoming: 'Upcoming', completed: 'Completed' };
 const PROJECT_FOCUS  = { urban: 'Urban & Informal Mobility', emobility: 'E-Mobility & Decarbonisation', safety: 'Road Safety', crosscutting: 'Cross-cutting' };
 
@@ -562,31 +603,7 @@ async function renderProjects() {
     return;
   }
 
-  gridEl.innerHTML = active.map(p => {
-    const status = PROJECT_STATUS[p.status] || '';
-    const focus  = PROJECT_FOCUS[p.category] || '';
-    const media  = p.image
-      ? `<div class="project-media" style="background-image:url('${p.image}')"></div>`
-      : `<div class="project-media project-media--empty" aria-hidden="true"></div>`;
-    const foot = [
-      p.timeframe ? `<span class="project-when">${p.timeframe}</span>` : '',
-      p.partners  ? `<span class="project-partners">Partners: ${p.partners}</span>` : ''
-    ].filter(Boolean).join('');
-    return `
-      <article class="project-card" data-category="${p.category}">
-        ${media}
-        <div class="project-body">
-          <div class="project-meta">
-            ${status ? `<span class="project-status project-status--${p.status}">${status}</span>` : ''}
-            ${focus ? `<span class="project-focus">${focus}</span>` : ''}
-          </div>
-          <h3>${p.title}</h3>
-          <p>${p.summary}</p>
-          ${foot ? `<div class="project-foot">${foot}</div>` : ''}
-          ${p.url ? `<a href="${p.url}" class="r-card-link" target="_blank" rel="noopener" style="margin-top:1.1rem">Learn more ${ARROW_SM}</a>` : ''}
-        </div>
-      </article>`;
-  }).join('');
+  gridEl.innerHTML = active.map(projectCardHTML).join('');
 }
 
 // ---- Init ----

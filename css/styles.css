@@ -293,6 +293,108 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
   bottom: -100px; left: 5%;
   pointer-events: none;
 }
+/* ----- Corridor network -----
+   Faint routes hold the shape; a pulse of light runs each corridor and the
+   junctions breathe, so the hero reads as a network in use rather than a photo. */
+.hero-routes {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.hero-routes path { fill: none; }
+.hero-routes-base path {
+  stroke: rgba(0, 196, 204, .13);
+  stroke-width: 1.25;
+}
+.route-pulse {
+  stroke: var(--c-teal);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 70 930;
+  filter: drop-shadow(0 0 6px rgba(0, 196, 204, .5));
+  animation: routeFlow 13s linear infinite;
+}
+@keyframes routeFlow {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -1000; }
+}
+.hero-nodes .node { fill: var(--c-teal); opacity: .75; }
+.hero-nodes .node-ring {
+  fill: none;
+  stroke: var(--c-teal);
+  stroke-width: 1.25;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nodePulse 4.2s ease-out infinite;
+}
+@keyframes nodePulse {
+  0%   { transform: scale(1);   opacity: .7; }
+  70%  { transform: scale(3.8); opacity: 0; }
+  100% { transform: scale(3.8); opacity: 0; }
+}
+
+/* ----- Hero entrance: eyebrow, headline, then the cue to keep going ----- */
+@keyframes heroRise { to { opacity: 1; transform: none; } }
+.hero-eyebrow,
+.hero h1,
+.hero-scroll {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: heroRise .85s cubic-bezier(.22, .61, .36, 1) forwards;
+}
+.hero-eyebrow { animation-delay: .1s; }
+.hero h1      { animation-delay: .28s; }
+.hero-scroll  { animation-delay: .7s; }
+
+.hero-scroll {
+  margin-top: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .9rem;
+  font-family: var(--font-display);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .5);
+  transition: color .3s ease;
+}
+.hero-scroll:hover { color: var(--c-teal); }
+.hero-scroll:focus-visible { outline: 2px solid var(--c-teal); outline-offset: 4px; }
+.hero-scroll-rail {
+  position: relative;
+  display: block;
+  width: 1px; height: 44px;
+  background: rgba(255, 255, 255, .18);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.hero-scroll-dot {
+  position: absolute;
+  left: -1px; top: 0;
+  width: 3px; height: 13px;
+  border-radius: 2px;
+  background: var(--c-teal);
+  animation: scrollDot 2.6s cubic-bezier(.6, 0, .4, 1) infinite;
+}
+@keyframes scrollDot {
+  0%   { transform: translateY(-15px); opacity: 0; }
+  25%  { opacity: 1; }
+  75%  { opacity: 1; }
+  100% { transform: translateY(44px);  opacity: 0; }
+}
+
+/* Ambient motion is decorative — hold everything still when asked to. */
+@media (prefers-reduced-motion: reduce) {
+  .route-pulse,
+  .hero-nodes .node-ring,
+  .hero-scroll-dot { animation: none; }
+  .route-pulse { opacity: .45; }
+  .hero-eyebrow,
+  .hero h1,
+  .hero-scroll { opacity: 1; transform: none; animation: none; }
+}
+
 .hero-inner {
   position: relative; z-index: 1;
   width: 100%;
@@ -467,6 +569,12 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
+/* Homepage variant — three across, shorter media, as a taster for /projects. */
+.projects-grid--3 { grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+.projects-grid--3 .project-media { height: 150px; }
+.projects-grid--3 .project-body { padding: 1.6rem; }
+.projects-grid--3 .project-card h3 { font-size: 1.15rem; }
+.projects-grid--3 .project-card p { font-size: .87rem; }
 .project-card {
   background: var(--c-white);
   border: 1px solid var(--c-grey-100);
@@ -1523,6 +1631,7 @@ textarea.form-control { resize: vertical; min-height: 140px; line-height: 1.6; }
   .featured-report { grid-template-columns: 1fr; }
   .featured-report-cta { display: none; }
   .team-grid   { grid-template-columns: repeat(3,1fr); }
+  .projects-grid--3 { grid-template-columns: repeat(2,1fr); }
 }
 @media (max-width: 900px) {
   .nav-links    { display: none; }
@@ -1536,6 +1645,7 @@ textarea.form-control { resize: vertical; min-height: 140px; line-height: 1.6; }
   .pillars-grid  { grid-template-columns: 1fr; }
   .stats-band-inner { grid-template-columns: repeat(2,1fr); }
   .research-grid-3 { grid-template-columns: 1fr; }
+  .projects-grid, .projects-grid--3 { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: repeat(2,1fr); }
 }
 @media (max-width: 640px) {

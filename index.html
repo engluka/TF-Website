@@ -50,6 +50,34 @@
   <div class="hero-glow-1"></div>
   <div class="hero-glow-2"></div>
 
+  <!-- Corridor network: the routes we study, drawn as a system in motion.
+       Base lines sit still; a pulse of light travels each corridor, and the
+       junctions where corridors meet breathe. -->
+  <svg class="hero-routes" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <g class="hero-routes-base">
+      <path pathLength="1000" d="M-60 640 C 220 600 340 430 610 405 S 1040 330 1520 210"/>
+      <path pathLength="1000" d="M-60 300 C 190 330 330 500 610 545 S 1040 640 1520 585"/>
+      <path pathLength="1000" d="M210 960 C 320 700 540 645 780 560 S 1130 420 1290 -60"/>
+      <path pathLength="1000" d="M-60 800 C 300 815 690 735 985 655 S 1310 575 1520 530"/>
+    </g>
+    <g class="hero-routes-flow">
+      <path class="route-pulse" style="animation-delay:-0s"   pathLength="1000" d="M-60 640 C 220 600 340 430 610 405 S 1040 330 1520 210"/>
+      <path class="route-pulse" style="animation-delay:-3.5s" pathLength="1000" d="M-60 300 C 190 330 330 500 610 545 S 1040 640 1520 585"/>
+      <path class="route-pulse" style="animation-delay:-7s"   pathLength="1000" d="M210 960 C 320 700 540 645 780 560 S 1130 420 1290 -60"/>
+      <path class="route-pulse" style="animation-delay:-9.5s" pathLength="1000" d="M-60 800 C 300 815 690 735 985 655 S 1310 575 1520 530"/>
+    </g>
+    <g class="hero-nodes">
+      <circle class="node" cx="610" cy="405" r="3.5"/>
+      <circle class="node-ring" cx="610" cy="405" r="3.5" style="animation-delay:-0s"/>
+      <circle class="node" cx="610" cy="545" r="3.5"/>
+      <circle class="node-ring" cx="610" cy="545" r="3.5" style="animation-delay:-1.2s"/>
+      <circle class="node" cx="780" cy="560" r="3.5"/>
+      <circle class="node-ring" cx="780" cy="560" r="3.5" style="animation-delay:-2.4s"/>
+      <circle class="node" cx="985" cy="655" r="3.5"/>
+      <circle class="node-ring" cx="985" cy="655" r="3.5" style="animation-delay:-3.1s"/>
+    </g>
+  </svg>
+
   <div class="hero-inner">
     <div class="hero-wrap">
 
@@ -60,13 +88,17 @@
           Shaping the Future<br>
           of <span class="accent">African Transport</span>
         </h1>
+        <a class="hero-scroll" href="#explore">
+          <span class="hero-scroll-rail"><span class="hero-scroll-dot"></span></span>
+          See our work
+        </a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ======= PILLARS ======= -->
-<section class="pillars-section">
+<section class="pillars-section" id="explore">
   <div class="pillars-inner">
     <div class="pillars-grid">
 
@@ -117,6 +149,23 @@
   </div>
 
   <div class="research-grid-3" id="home-research-grid">
+    <!-- Loaded by cms-render.js -->
+  </div>
+</section>
+
+<!-- ======= CURRENT WORK ======= -->
+<section class="section home-projects">
+  <div class="section-header reveal">
+    <div>
+      <div class="label">Current Work</div>
+      <h2>What we're working on</h2>
+    </div>
+    <a href="projects.html" class="btn btn-ghost">All projects
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <div class="projects-grid projects-grid--3 reveal" id="home-projects-grid">
     <!-- Loaded by cms-render.js -->
   </div>
 </section>
