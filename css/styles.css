@@ -1152,8 +1152,16 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
   transform: rotateY(180deg);
   background: linear-gradient(155deg, var(--c-navy-700) 0%, var(--c-navy) 100%);
   border-color: rgba(0, 196, 204, .45);
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
   padding: 1.15rem 1.25rem;
+}
+/* No bio (e.g. advisors) — just centre the links. */
+.team-face--back-solo { align-items: center; justify-content: center; }
+.team-bio-text {
+  flex: 1;
+  min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
@@ -1163,8 +1171,18 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
   color: rgba(255, 255, 255, .82);
   text-align: left;
 }
-.team-face--back::-webkit-scrollbar { width: 4px; }
-.team-face--back::-webkit-scrollbar-thumb { background: rgba(0, 196, 204, .4); border-radius: 4px; }
+.team-bio-text::-webkit-scrollbar { width: 4px; }
+.team-bio-text::-webkit-scrollbar-thumb { background: rgba(0, 196, 204, .4); border-radius: 4px; }
+/* Links pinned below the bio so they stay reachable however long it runs. */
+.team-face--back .team-socials {
+  flex-shrink: 0;
+  margin-top: .65rem;
+  padding-top: .65rem;
+  border-top: 1px solid rgba(255, 255, 255, .14);
+}
+.team-face--back-solo .team-socials { margin-top: 0; padding-top: 0; border-top: none; }
+.team-face--back .team-socials a { color: rgba(255, 255, 255, .7); }
+.team-face--back .team-socials a:hover { color: var(--c-teal); }
 
 /* Flipping is decorative motion — respect a reduced-motion preference. */
 @media (prefers-reduced-motion: reduce) {
@@ -1181,7 +1199,6 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
   margin-bottom: .65rem;
 }
 .team-card p { font-size: .87rem; color: var(--c-grey-600); line-height: 1.6; }
-.team-actions { margin-top: 1rem; display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
 .team-socials { display: flex; align-items: center; gap: .65rem; }
 .team-socials a { color: var(--c-grey-400); transition: color .25s ease; display: inline-flex; align-items: center; }
 .team-socials a:hover { color: var(--c-teal); }
@@ -1199,7 +1216,7 @@ a { color: var(--c-teal); text-decoration: none; transition: var(--t); }
 .team-grid--advisors .team-face--back { padding: .9rem; }
 .team-grid--advisors .team-face--back p { font-size: .62rem; line-height: 1.45; }
 .team-grid--advisors .team-card { text-align: center; }
-.team-grid--advisors .team-actions { justify-content: center; }
+.team-grid--advisors .team-socials { justify-content: center; }
 
 /* ========== CONTACT PAGE ========== */
 .contact-layout {

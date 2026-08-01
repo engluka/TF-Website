@@ -327,13 +327,19 @@ function personCardHTML(m, i) {
     ? `<img src="${m.photo}" alt="${escapeAttr(m.name)}">`
     : `<span>${m.initials}</span>`;
 
-  // The photo flips on hover (tap/keyboard elsewhere) to reveal the bio on its
-  // reverse side. With no bio there's nothing to flip to, so it stays a plain photo.
-  const avatar = m.bio
-    ? `<div class="team-avatar team-avatar--flip" style="--av-bg:${grad}" tabindex="0" role="button" aria-expanded="false" aria-label="Show bio for ${escapeAttr(m.name)}">
+  // The photo flips on hover (tap/keyboard elsewhere) to reveal the bio and any
+  // links on its reverse side. Advisors have links but no bio, so the back face
+  // appears whenever there's either one — otherwise it stays a plain photo.
+  const back = [
+    m.bio   ? `<div class="team-bio-text"><p>${m.bio}</p></div>` : '',
+    socials ? `<div class="team-socials">${socials}</div>` : ''
+  ].filter(Boolean).join('');
+
+  const avatar = back
+    ? `<div class="team-avatar team-avatar--flip" style="--av-bg:${grad}" tabindex="0" role="button" aria-expanded="false" aria-label="More about ${escapeAttr(m.name)}">
           <div class="team-avatar-inner">
             <div class="team-face team-face--front">${face}</div>
-            <div class="team-face team-face--back"><p>${m.bio}</p></div>
+            <div class="team-face team-face--back${m.bio ? '' : ' team-face--back-solo'}">${back}</div>
           </div>
         </div>`
     : `<div class="team-avatar" style="--av-bg:${grad}">
@@ -342,16 +348,11 @@ function personCardHTML(m, i) {
           </div>
         </div>`;
 
-  const actions = socials ? `
-        <div class="team-actions">
-          <div class="team-socials">${socials}</div>
-        </div>` : '';
-
   return `
       <div class="team-card">
         ${avatar}
         <h4>${m.name}</h4>
-        <div class="team-role">${m.role}</div>${actions}
+        <div class="team-role">${m.role}</div>
       </div>`;
 }
 
@@ -363,6 +364,8 @@ function wireBioFlips(gridEl) {
     el.setAttribute('aria-expanded', open ? 'true' : 'false');
   };
   gridEl.addEventListener('click', e => {
+    // Links live on the flipped face — let them open instead of flipping back.
+    if (e.target.closest('a')) return;
     const av = e.target.closest('.team-avatar--flip');
     if (av) flip(av);
   });
