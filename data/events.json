@@ -43,20 +43,6 @@
     },
     {
       "month": "Sep",
-      "registration_url": "",
-      "registration_style": "btn-ghost",
-      "date": "2026-09-10",
-      "registration_label": "Join Waiting List",
-      "date_display": "10 September 2026, 18:30 EAT",
-      "location": "Online",
-      "title": "Infrastructure, Equity, and the African City",
-      "type": "Webinar",
-      "registration_action": "waitlist",
-      "day": "10",
-      "description": "Dr. Anteneh will be speaking on planning for informality — why Africa's cities need new frameworks, not borrowed ones."
-    },
-    {
-      "month": "Sep",
       "registration_url": "https://www.africaevsummit.com/tickets",
       "registration_style": "btn-ghost",
       "registration_label": "Buy Tickets",
@@ -80,6 +66,18 @@
       "registration_action": "link",
       "day": "26",
       "description": "Driving change"
+    },
+    {
+      "month": "Sep",
+      "registration_url": "https://civicrm.changing-transport.org/form/launch-webinar-turning-points-en",
+      "registration_style": "btn-ghost",
+      "date_display": "04 September 2026",
+      "location": "MS Teams",
+      "title": "Turning Points: Enabling Sustainable Transport in Africa",
+      "type": "Webinar",
+      "registration_action": "link",
+      "day": "04",
+      "description": "Over the past two years, the Rethinking Transport Initiative, led by Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ) GmbH in partnership with Agora Verkehrswende, has convened African stakeholders from politics, academia, civil society and the private sector to identify key 'turning points' to answer that question. The turning points refer to critical moments, decisions and events that could positively influence the progress of sustainable transport. Edna will be one of the six panelists. "
     }
   ],
   "past": [
