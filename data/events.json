@@ -1,6 +1,18 @@
 {
   "upcoming": [
     {
+      "month": "Sep",
+      "registration_url": "https://civicrm.changing-transport.org/form/launch-webinar-turning-points-en",
+      "registration_style": "btn-ghost",
+      "date_display": "04 September 2026",
+      "location": "MS Teams",
+      "title": "Turning Points: Enabling Sustainable Transport in Africa",
+      "type": "Webinar",
+      "registration_action": "link",
+      "day": "04",
+      "description": "Over the past two years, the Rethinking Transport Initiative, led by Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ) GmbH in partnership with Agora Verkehrswende, has convened African stakeholders from politics, academia, civil society and the private sector to identify key 'turning points' to answer that question. The turning points refer to critical moments, decisions and events that could positively influence the progress of sustainable transport. Edna will be one of the six panelists. "
+    },
+    {
       "month": "Jun",
       "registration_url": "",
       "registration_style": "btn-primary",
@@ -66,18 +78,6 @@
       "registration_action": "link",
       "day": "26",
       "description": "Driving change"
-    },
-    {
-      "month": "Sep",
-      "registration_url": "https://civicrm.changing-transport.org/form/launch-webinar-turning-points-en",
-      "registration_style": "btn-ghost",
-      "date_display": "04 September 2026",
-      "location": "MS Teams",
-      "title": "Turning Points: Enabling Sustainable Transport in Africa",
-      "type": "Webinar",
-      "registration_action": "link",
-      "day": "04",
-      "description": "Over the past two years, the Rethinking Transport Initiative, led by Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ) GmbH in partnership with Agora Verkehrswende, has convened African stakeholders from politics, academia, civil society and the private sector to identify key 'turning points' to answer that question. The turning points refer to critical moments, decisions and events that could positively influence the progress of sustainable transport. Edna will be one of the six panelists. "
     }
   ],
   "past": [
