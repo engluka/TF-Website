@@ -78,6 +78,18 @@
       "registration_action": "link",
       "day": "26",
       "description": "Driving change"
+    },
+    {
+      "month": "Aug",
+      "registration_url": "https://www.africaevsummit.com/webinar",
+      "registration_style": "btn-ghost",
+      "date_display": "25 August 2026",
+      "location": "StreamYard",
+      "title": "Africa's EV Moment From Policy to Bankable Scale",
+      "type": "Webinar",
+      "registration_action": "link",
+      "day": "25",
+      "description": "This 60-minute briefing examines what is changing, where promising pilots encounter real system constraints and what investors need before opportunity can become bankable deployment. Edna will be moderating one of the three sessions, which is titled \"From pilots to systems\". "
     }
   ],
   "past": [
