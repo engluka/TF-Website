@@ -1,18 +1,6 @@
 {
   "upcoming": [
     {
-      "month": "Aug",
-      "registration_url": "https://www.africaevsummit.com/webinar",
-      "registration_style": "btn-ghost",
-      "date_display": "25 August 2026",
-      "location": "StreamYard",
-      "title": "Africa's EV Moment From Policy to Bankable Scale",
-      "type": "Webinar",
-      "registration_action": "link",
-      "day": "25",
-      "description": "This 60-minute briefing examines what is changing, where promising pilots encounter real system constraints and what investors need before opportunity can become bankable deployment. Edna will be moderating one of the three sessions, which is titled \"From pilots to systems\". "
-    },
-    {
       "month": "Sep",
       "registration_url": "https://civicrm.changing-transport.org/form/launch-webinar-turning-points-en",
       "registration_style": "btn-ghost",
@@ -23,6 +11,18 @@
       "registration_action": "link",
       "day": "04",
       "description": "Over the past two years, the Rethinking Transport Initiative, led by Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ) GmbH in partnership with Agora Verkehrswende, has convened African stakeholders from politics, academia, civil society and the private sector to identify key 'turning points' to answer that question. The turning points refer to critical moments, decisions and events that could positively influence the progress of sustainable transport. Edna will be one of the six panelists. "
+    },
+    {
+      "month": "Aug",
+      "registration_url": "https://www.africaevsummit.com/webinar",
+      "registration_style": "btn-ghost",
+      "date_display": "25 August 2026",
+      "location": "StreamYard",
+      "title": "Africa's EV Moment From Policy to Bankable Scale",
+      "type": "Webinar",
+      "registration_action": "link",
+      "day": "25",
+      "description": "This 60-minute briefing examines what is changing, where promising pilots encounter real system constraints and what investors need before opportunity can become bankable deployment. Edna will be moderating one of the three sessions, which is titled \"From pilots to systems\". "
     },
     {
       "month": "Jun",
