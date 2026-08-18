@@ -1,21 +1,10 @@
 {
   "upcoming": [
     {
-      "month": "Sep",
-      "registration_url": "https://civicrm.changing-transport.org/form/launch-webinar-turning-points-en",
-      "registration_style": "btn-ghost",
-      "date_display": "04 September 2026",
-      "location": "MS Teams",
-      "title": "Turning Points: Enabling Sustainable Transport in Africa",
-      "type": "Webinar",
-      "registration_action": "link",
-      "day": "04",
-      "description": "Over the past two years, the Rethinking Transport Initiative, led by Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ) GmbH in partnership with Agora Verkehrswende, has convened African stakeholders from politics, academia, civil society and the private sector to identify key 'turning points' to answer that question. The turning points refer to critical moments, decisions and events that could positively influence the progress of sustainable transport. Edna will be one of the six panelists. "
-    },
-    {
       "month": "Aug",
       "registration_url": "https://www.africaevsummit.com/webinar",
       "registration_style": "btn-ghost",
+      "date": "2026-08-25",
       "date_display": "25 August 2026",
       "location": "StreamYard",
       "title": "Africa's EV Moment From Policy to Bankable Scale",
@@ -23,6 +12,19 @@
       "registration_action": "link",
       "day": "25",
       "description": "This 60-minute briefing examines what is changing, where promising pilots encounter real system constraints and what investors need before opportunity can become bankable deployment. Edna will be moderating one of the three sessions, which is titled \"From pilots to systems\". "
+    },
+    {
+      "month": "Sep",
+      "registration_url": "https://civicrm.changing-transport.org/form/launch-webinar-turning-points-en",
+      "registration_style": "btn-ghost",
+      "date": "2026-09-04",
+      "date_display": "04 September 2026",
+      "location": "MS Teams",
+      "title": "Turning Points: Enabling Sustainable Transport in Africa",
+      "type": "Webinar",
+      "registration_action": "link",
+      "day": "04",
+      "description": "Over the past two years, the Rethinking Transport Initiative, led by Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ) GmbH in partnership with Agora Verkehrswende, has convened African stakeholders from politics, academia, civil society and the private sector to identify key 'turning points' to answer that question. The turning points refer to critical moments, decisions and events that could positively influence the progress of sustainable transport. Edna will be one of the six panelists. "
     },
     {
       "month": "Jun",
@@ -56,6 +58,8 @@
       "registration_url": "https://www.africaevsummit.com/tickets",
       "registration_style": "btn-ghost",
       "registration_label": "Buy Tickets",
+      "date": "2026-09-14",
+      "end_date": "2026-09-16",
       "date_display": "14-16 September 2026",
       "location": "Addis Ababa",
       "title": "Nordic-Africa EV Summit",
@@ -83,6 +87,7 @@
       "registration_url": "https://docs.google.com/forms/d/e/1FAIpQLSc1HPaf_XZ_iJYALBLyZ_1FDAHvyD5RSX1OOJCxA4tp31ft6A/viewform?usp=send_form",
       "registration_style": "btn-ghost",
       "registration_label": "Register",
+      "date": "2026-06-26",
       "date_display": "26 June 2026",
       "location": "World",
       "title": "How African Youth Can Lead The Green Logistics Revolution",
